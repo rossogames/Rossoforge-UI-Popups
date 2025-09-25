@@ -9,7 +9,7 @@ namespace Rossoforge.UI.Popups.PopupBase
         IButtonClickListener<PopupButtonClose>
         where V : PopupView<V, P, D>
         where P : PopupPresenter<V, P, D>
-        where D : IPopupData
+        where D : IPopupViewData
     {
         private PopupController _popupController;
 
@@ -21,7 +21,7 @@ namespace Rossoforge.UI.Popups.PopupBase
             _popupController = GetComponent<PopupController>();
         }
 
-        public void SetData(IPopupData popupData) => Presenter.OnSetData((D)popupData);
+        public void SetData(IPopupViewData popupData) => Presenter.OnSetData((D)popupData);
         public void Close() => _popupController.Close();
         public void Open() => _popupController.Open();
         public bool CanBeOpened() => State == PopupState.Inactive;
