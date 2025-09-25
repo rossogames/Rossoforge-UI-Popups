@@ -1,4 +1,4 @@
-namespace Rossoforge.UI.Controls
+namespace Rossoforge.UI.Buttons
 {
     public interface IButtonClickListener<T>
     {
