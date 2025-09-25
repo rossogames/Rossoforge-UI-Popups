@@ -1,17 +1,18 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace Rossoforge.UI.Buttons
+namespace Rossoforge.UI.Controls
 {
-    [RequireComponent(typeof(UnityEngine.UI.Button))]
+    [RequireComponent(typeof(Button))]
     public abstract class UIButton<T> : MonoBehaviour
     {
-        private UnityEngine.UI.Button _button;
+        private Button _button;
 
         private IButtonClickListener<T> _clickListener;
 
         private void Awake()
         {
-            _button = GetComponent<UnityEngine.UI.Button>();
+            _button = GetComponent<Button>();
             _clickListener = GetComponentInParent<IButtonClickListener<T>>(true);
         }
 
