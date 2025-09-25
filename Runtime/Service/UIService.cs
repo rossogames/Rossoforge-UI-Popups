@@ -1,38 +1,37 @@
-using Rossoforge.UI.Popups.PopupBase;
+using Rossoforge.Core.Pool;
+using Rossoforge.Core.UI;
 using UnityEngine;
 
 namespace Rossoforge.UI.Service
 {
-    public interface IUIService
-    {
-
-    }
     public class UIService: IUIService
     {
-        public T OpenPopup<T>(T popupView) where T : MonoBehaviour, IPopupView
+        private IPoolService _poolService;
+
+        public UIService(IPoolService poolService)
         {
+            _poolService = poolService;
+        }
+
+        public T OpenPopup<T>(IPooledGameobjectData data, Vector3 position = new(), Space relativeTo = Space.Self) where T : MonoBehaviour, IPopupView
+        {
+            //Transform parent,
+            var popupView = _poolService.Get<T>(data, null, position, relativeTo);
+
             if (popupView.CanBeOpened())
             {
                 popupView.Open();
                 return popupView;
             }
-
-            Debug.LogWarning($"[UIService] Popup {popupView.name} cannot be opened. Current state: {popupView.State}");
+            
+            Debug.LogWarning($"Popup {popupView.name} cannot be opened. Current state: {popupView.State}");
             return null;
+
+            
         }
+
+        // CREAR ROOT DE POPUPS (CANVAS) // quizas mejor dejarlos en el root
+        // OPEN WAIT UNTIL CLOSED -- 
+        // POPUP CANCEL (KEYBOARD, BACK BUTTON, ETC)
     }
-    //[CreateAssetMenu(fileName = nameof(PooledGameobjectData), menuName = "Rossoforge/Pool/Pooled Gameobject Data")]
-    //public class PooledGameobjectData : ScriptableObject, IPooledGameobjectData
-    //{
-    //    [field: SerializeField]
-    //    public GameObject AssetReference { get; private set; }
-    //
-    //    [field: SerializeField]
-    //    public int MaxSize { get; private set; } = 1;
-    //
-    //    private void OnValidate()
-    //    {
-    //        MaxSize = Mathf.Max(1, MaxSize);
-    //    }
-    //}
 }

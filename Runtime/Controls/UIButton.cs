@@ -1,7 +1,8 @@
+using Rossoforge.Core.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Rossoforge.UI.Buttons
+namespace Rossoforge.UI.Controls
 {
     [RequireComponent(typeof(Button))]
     public abstract class UIButton<T> : MonoBehaviour

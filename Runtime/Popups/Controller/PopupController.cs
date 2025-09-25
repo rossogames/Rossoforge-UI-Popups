@@ -1,4 +1,4 @@
-using Rossoforge.UI.Popups.PopupBase;
+using Rossoforge.Core.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

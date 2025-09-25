@@ -1,4 +1,5 @@
 using Rossoforge.Core.Events;
+using Rossoforge.Core.UI;
 using Rossoforge.UI.Popups.Controller;
 
 namespace Rossoforge.UI.Popups.PopupBase
@@ -7,7 +8,7 @@ namespace Rossoforge.UI.Popups.PopupBase
         IEventListener<PopupCancelEvent>
         where V : PopupView<V, P, D>
         where P : PopupPresenter<V, P, D>
-        where D : IPopupViewData
+        where D : IPopupData
     {
         protected readonly IEventService _eventService;
 

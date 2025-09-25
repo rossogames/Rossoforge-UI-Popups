@@ -1,5 +1,5 @@
 using Rossoforge.Core.Events;
-using Rossoforge.UI.Popups.PopupBase;
+using Rossoforge.Core.UI;
 
 namespace Rossoforge.UI.Popups.Controller
 {
