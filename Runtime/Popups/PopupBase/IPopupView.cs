@@ -5,6 +5,8 @@ namespace Rossoforge.UI.Popups.PopupBase
         PopupState State { get; }
 
         void SetData(IPopupData popupData);
+        bool CanBeOpened();
+        bool CanBeClosed();
         void Close();
         void Open();
 
