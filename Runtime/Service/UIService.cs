@@ -17,6 +17,7 @@ namespace Rossoforge.UI.Service
         private IPoolService _poolService;
 
         private GameObject _root;
+        private int _baseSortingOrder = 30000;
 
         private List<IPopupView> _openPopups;
 
@@ -54,7 +55,7 @@ namespace Rossoforge.UI.Service
                 popupView.Open();
 
                 _openPopups.Add(popupView);
-                popupView.SetSortingOrder(_openPopups.Count + 30000);
+                popupView.SetSortingOrder(_openPopups.Count + _baseSortingOrder);
 
                 return popupView;
             }
@@ -70,6 +71,5 @@ namespace Rossoforge.UI.Service
 
         // OPEN WAIT UNTIL CLOSED -- 
         // POPUP CANCEL (KEYBOARD, BACK BUTTON, ETC)
-        // catchear popups activos y aumentar sorting order
     }
 }
