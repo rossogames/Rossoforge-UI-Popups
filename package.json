@@ -38,7 +38,7 @@
     },
     {
       "displayName": "Popup usage demo",
-      "description": "Contains a demonstration of how to use the popup. Requires 'Popup Essentials', 'Popup Template', and at least one animation sample.",
+      "description": "Contains a demonstration of how to use the popup. Requires 'Base Popup', 'Popup Template', and at least one animation sample.",
       "path": "Samples~/PopupDemo"
     }
   ],
