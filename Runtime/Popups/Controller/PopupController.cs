@@ -15,7 +15,7 @@ namespace Rossoforge.UI.Popups.Controller
         private int _animationClipHash_open;
         private int _animationClipHash_close;
 
-        public PopupState State { get; private set; }
+        public PopupState State { get; set; }
 
         private async void Awake()
         {

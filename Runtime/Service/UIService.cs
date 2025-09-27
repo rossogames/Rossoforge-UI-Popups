@@ -6,6 +6,7 @@ using Rossoforge.Core.UI;
 using Rossoforge.UI.Popups.Events;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Rossoforge.UI.Service
@@ -20,12 +21,14 @@ namespace Rossoforge.UI.Service
         private int _baseSortingOrder = 30000;
 
         private List<IPopupView> _openPopups;
+        private Dictionary<IPopupView, TaskCompletionSource<bool>> _popupCompletionSources;
 
         public UIService(IEventService eventService, IPoolService poolService)
         {
             _eventService = eventService;
             _poolService = poolService;
             _openPopups = new List<IPopupView>();
+            _popupCompletionSources = new Dictionary<IPopupView, TaskCompletionSource<bool>>();
         }
 
         public void Initialize()
@@ -54,31 +57,65 @@ namespace Rossoforge.UI.Service
         public T OpenPopup<T>(IPooledGameobjectData data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self) where T : MonoBehaviour, IPopupView
         {
             var popupView = _poolService.Get<T>(data, _root.transform, position, relativeTo);
-            return TryOpenPopup<T>(popupView, popupData);
+            TryOpenPopup<T>(popupView, popupData);
+            return popupView;
         }
 
-        private T TryOpenPopup<T>(T popupView, IPopupData popupData) where T : MonoBehaviour, IPopupView
+        public async Awaitable<T> OpenPopup<T>(IPooledObjectAsyncData data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self) where T : MonoBehaviour, IPopupView
         {
-            if (popupView.CanBeOpened())
+            var popupView = await _poolService.GetAsync<T>(data, _root.transform, position, relativeTo);
+            TryOpenPopup<T>(popupView, popupData);
+            return popupView;
+        }
+
+        public async Awaitable<T> OpenPopupUntilClosed<T>(IPooledGameobjectData data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self) where T : MonoBehaviour, IPopupView
+        {
+            var tcs = new TaskCompletionSource<bool>();
+            var popupView = _poolService.Get<T>(data, _root.transform, position, relativeTo);
+
+            _popupCompletionSources.Add(popupView, tcs);
+            TryOpenPopup<T>(popupView, popupData);
+            await tcs.Task;
+
+            return popupView;
+        }
+
+        public async Awaitable<T> OpenPopupUntilClosed<T>(IPooledObjectAsyncData data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self) where T : MonoBehaviour, IPopupView
+        {
+            var tcs = new TaskCompletionSource<bool>();
+            var popupView = await _poolService.GetAsync<T>(data, _root.transform, position, relativeTo);
+
+            _popupCompletionSources.Add(popupView, tcs);
+            TryOpenPopup<T>(popupView, popupData);
+            await tcs.Task;
+
+            return popupView;
+        }
+
+        private void TryOpenPopup<T>(T popupView, IPopupData popupData) where T : MonoBehaviour, IPopupView
+        {
+            if (!popupView.CanBeOpened())
             {
-                popupView.SetData(popupData);
-                popupView.Open();
-
-                _openPopups.Add(popupView);
-                popupView.SetSortingOrder(_openPopups.Count + _baseSortingOrder);
-
-                return popupView;
+                Debug.LogWarning($"Popup {popupView.name} cannot be opened. Current state: {popupView.State}");
+                return;
             }
 
-            Debug.LogWarning($"Popup {popupView.name} cannot be opened. Current state: {popupView.State}");
-            return null;
+            popupView.SetData(popupData);
+            popupView.Open();
+
+            _openPopups.Add(popupView);
+            popupView.SetSortingOrder(_openPopups.Count + _baseSortingOrder);
         }
 
         public void OnEventInvoked(PopupDeactivatedEvent eventArg)
         {
             _openPopups.Remove(eventArg.PopupView);
-        }
 
-        // OPEN WAIT UNTIL CLOSED -- 
+            if (_popupCompletionSources.TryGetValue(eventArg.PopupView, out var tcs))
+            {
+                tcs.SetResult(true);
+                _popupCompletionSources.Remove(eventArg.PopupView);
+            }
+        }
     }
 }
