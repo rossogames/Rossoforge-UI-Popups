@@ -16,6 +16,8 @@ namespace Rossoforge.UI.Popups.PopupBase
         private Canvas _canvas;
 
         protected P Presenter { get; set; }
+
+        public string Name => gameObject.name;
         public PopupState State => _popupController.State;
         public bool AllowCancel => Presenter.AllowCancel;
 

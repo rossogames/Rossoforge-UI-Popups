@@ -1,6 +1,6 @@
 using Rossoforge.Core.Events;
 using Rossoforge.Core.UI;
-using Rossoforge.UI.Popups.Controller;
+using Rossoforge.UI.Popups.Events;
 
 namespace Rossoforge.UI.Popups.PopupBase
 {
@@ -30,16 +30,19 @@ namespace Rossoforge.UI.Popups.PopupBase
 
         public virtual void OnShowing()
         {
+            _eventService.Raise(new PopupShowingEvent(View));
         }
         public virtual void OnActivate()
         {
+            _eventService.Raise(new PopupActivatedEvent(View));
         }
         public virtual void OnHiding()
         {
+            _eventService.Raise(new PopupHidingEvent(View));
         }
         public virtual void OnDeactivate()
         {
-            _eventService.Raise(new PopupClosedEvent(this, View));
+            _eventService.Raise(new PopupDeactivatedEvent(View));
         }
     }
 }

@@ -3,7 +3,7 @@ using Rossoforge.Core.Events;
 using Rossoforge.Core.Pool;
 using Rossoforge.Core.Services;
 using Rossoforge.Core.UI;
-using Rossoforge.UI.Popups.Controller;
+using Rossoforge.UI.Popups.Events;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +11,7 @@ using UnityEngine;
 namespace Rossoforge.UI.Service
 {
     public class UIService : IUIService, IInitializable, IDisposable,
-        IEventListener<PopupClosedEvent>
+        IEventListener<PopupDeactivatedEvent>
     {
         private IEventService _eventService;
         private IPoolService _poolService;
@@ -33,12 +33,12 @@ namespace Rossoforge.UI.Service
             _root = new GameObject("PopupsRoot");
             _root.AddComponent<DontDestroyRoot>();
 
-            _eventService.RegisterListener<PopupClosedEvent>(this);
+            _eventService.RegisterListener<PopupDeactivatedEvent>(this);
         }
 
         public void Dispose()
         {
-            _eventService.UnregisterListener<PopupClosedEvent>(this);
+            _eventService.UnregisterListener<PopupDeactivatedEvent>(this);
         }
 
         public void CancelPopup()
@@ -74,12 +74,11 @@ namespace Rossoforge.UI.Service
             return null;
         }
 
-        public void OnEventInvoked(PopupClosedEvent eventArg)
+        public void OnEventInvoked(PopupDeactivatedEvent eventArg)
         {
             _openPopups.Remove(eventArg.PopupView);
         }
 
         // OPEN WAIT UNTIL CLOSED -- 
-        // POPUP CANCEL (KEYBOARD, BACK BUTTON, ETC)
     }
 }
