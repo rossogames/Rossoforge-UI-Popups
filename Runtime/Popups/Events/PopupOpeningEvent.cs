@@ -3,11 +3,11 @@ using Rossoforge.Core.UI;
 
 namespace Rossoforge.UI.Popups.Events
 {
-    public readonly struct PopupShowingEvent : IEvent
+    public readonly struct PopupOpeningEvent : IEvent
     {
         public readonly IPopupView PopupView;
 
-        public PopupShowingEvent(IPopupView popupView)
+        public PopupOpeningEvent(IPopupView popupView)
         {
             PopupView = popupView;
         }

@@ -47,7 +47,7 @@ namespace Rossoforge.UI.Service
                 return;
 
             var popupView = _openPopups[^1];
-            if(popupView.AllowCancel)
+            if (popupView.AllowCancel)
                 popupView.Close();
         }
 

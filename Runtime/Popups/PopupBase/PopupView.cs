@@ -34,9 +34,9 @@ namespace Rossoforge.UI.Popups.PopupBase
         public bool CanBeClosed() => State == PopupState.Active;
         public void SetSortingOrder(int sortingOrder) => _canvas.sortingOrder = sortingOrder;
 
-        public virtual void OnOpening() => Presenter.OnShowing();
+        public virtual void OnOpening() => Presenter.OnOpening();
         public virtual void OnActivate() => Presenter.OnActivate();
-        public virtual void OnClosing() => Presenter.OnHiding();
+        public virtual void OnClosing() => Presenter.OnClosing();
         public virtual void OnDeactivate() => Presenter.OnDeactivate();
 
         public virtual void OnButtonClickInvoked(PopupButtonClose eventArg) => Close();

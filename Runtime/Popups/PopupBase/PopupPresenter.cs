@@ -28,17 +28,17 @@ namespace Rossoforge.UI.Popups.PopupBase
             Data = popupData;
         }
 
-        public virtual void OnShowing()
+        public virtual void OnOpening()
         {
-            _eventService.Raise(new PopupShowingEvent(View));
+            _eventService.Raise(new PopupOpeningEvent(View));
         }
         public virtual void OnActivate()
         {
             _eventService.Raise(new PopupActivatedEvent(View));
         }
-        public virtual void OnHiding()
+        public virtual void OnClosing()
         {
-            _eventService.Raise(new PopupHidingEvent(View));
+            _eventService.Raise(new PopupClosingEvent(View));
         }
         public virtual void OnDeactivate()
         {
