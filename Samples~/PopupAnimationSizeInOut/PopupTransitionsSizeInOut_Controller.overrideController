@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PopupTransitionsSizeInOut_Controller
+  m_Controller: {fileID: 9100000, guid: e873be4f020fd52439c7496241ea75c0, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 21f1827d956de004fb58bdacc20c4e93, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ab2ac9d6b604d2c4e995a87a6d1bf6f4, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4b84e74e086068f468ac32cf8c80a0f5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 94a799b65cccb1640802ce0dc8ae5ed2, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b19c84556b8971d4cab58543615ad6a5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 07ae9297e56971143b578008be4d5a1f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 1656d54eeb56c374f86029119e500fed, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4cd92076ad9a67a46a357411a390e733, type: 2}

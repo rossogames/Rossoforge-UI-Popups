@@ -11,6 +11,35 @@
     "rossogames",
     "rossoforge",
     "ui",
-    "UI"
+    "UI",
+    "popup",
+    "popups"
+  ],
+  "samples": [
+    {
+      "displayName": "Base Popup",
+      "description": "Contains the base prefab and animator controller used in all popups",
+      "path": "Samples~/PopupBase"
+    },
+    {
+      "displayName": "Popup Animation - FadeInOut",
+      "description": "Contains the animation assets to give the fade in/out effect when opening and closing the popup",
+      "path": "Samples~/PopupAnimationFadeInOut"
+    },
+    {
+      "displayName": "Popup Animation - SizeInOut",
+      "description": "Contains the animation assets to give the size in/out effect when opening and closing the popup",
+      "path": "Samples~/PopupAnimationSizeInOut"
+    },
+    {
+      "displayName": "Popup Template",
+      "description": "Popup's Template ready to adapt, implements a variant of the base popup. Requires 'Base Popup'",
+      "path": "Samples~/PopupTemplate"
+    },
+    {
+      "displayName": "Popup usage demo",
+      "description": "Contains a demonstration of how to use the popup. Requires 'Popup Essentials', 'Popup Template', and at least one animation sample.",
+      "path": "Samples~/PopupDemo"
+    }
   ]
 }
