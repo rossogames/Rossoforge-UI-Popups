@@ -41,6 +41,16 @@ namespace Rossoforge.UI.Service
             _eventService.UnregisterListener<PopupClosedEvent>(this);
         }
 
+        public void CancelPopup()
+        {
+            if (_openPopups.Count == 0)
+                return;
+
+            var popupView = _openPopups[^1];
+            if(popupView.AllowCancel)
+                popupView.Close();
+        }
+
         public T OpenPopup<T>(IPooledGameobjectData data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self) where T : MonoBehaviour, IPopupView
         {
             var popupView = _poolService.Get<T>(data, _root.transform, position, relativeTo);

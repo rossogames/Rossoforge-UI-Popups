@@ -17,6 +17,7 @@ namespace Rossoforge.UI.Popups.PopupBase
 
         protected P Presenter { get; set; }
         public PopupState State => _popupController.State;
+        public bool AllowCancel => Presenter.AllowCancel;
 
         protected virtual void Awake()
         {
