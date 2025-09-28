@@ -6,16 +6,33 @@ using static Rossoforge.Extensions.RectTransformExtensions;
 
 namespace Rossoforge.UI.Controls.Switchs
 {
+    [RequireComponent(typeof(CanvasGroup))]
     public class Switch : MonoBehaviour, IPointerDownHandler
     {
-        [SerializeField] private SwitchImages images;
-        [SerializeField] private SwitchLabels labels;
+        [SerializeField] private bool _interactable = true;
         [SerializeField] private bool _isOn;
+
+        [SerializeField] private SwitchImages _images;
+        [SerializeField] private SwitchLabels _labels;
+        [SerializeField] private CanvasGroup _canvasGroup;
 
         private const float margin = -10;
         private const float widgth = 86;
 
         public UnityEvent<bool> onValueChanged;
+
+        public bool Interactable
+        {
+            get => _interactable;
+            set
+            {
+                if (_interactable != value)
+                {
+                    _interactable = value;
+                    UpdateInteractivleView();
+                }
+            }
+        }
 
         public bool IsOn
         {
@@ -25,7 +42,7 @@ namespace Rossoforge.UI.Controls.Switchs
                 if (_isOn != value)
                 {
                     _isOn = value;
-                    UpdateToggle();
+                    UpdateToggleView();
                     onValueChanged.Invoke(value);
                 }
             }
@@ -33,6 +50,9 @@ namespace Rossoforge.UI.Controls.Switchs
 
         public void OnPointerDown(PointerEventData eventData)
         {
+            if (!Interactable)
+                return;
+
             this.IsOn = !this.IsOn;
         }
 
@@ -44,19 +64,20 @@ namespace Rossoforge.UI.Controls.Switchs
                 if (this == null)
                     return;
 
-                UpdateToggle();
+                UpdateToggleView();
+                UpdateInteractivleView();
             };
         }
 #endif 
 
-        private void UpdateToggle()
+        private void UpdateToggleView()
         {
-            var recTransform = (RectTransform)images.toggle.transform;
+            var recTransform = (RectTransform)_images.toggle.transform;
 
-            images.backgroundOn.gameObject.SetActive(this.IsOn);
-            images.backgroundOff.gameObject.SetActive(!this.IsOn);
-            labels.labelOn.gameObject.SetActive(this.IsOn);
-            labels.labelOff.gameObject.SetActive(!this.IsOn);
+            _images.backgroundOn.gameObject.SetActive(this.IsOn);
+            _images.backgroundOff.gameObject.SetActive(!this.IsOn);
+            _labels.labelOn.gameObject.SetActive(this.IsOn);
+            _labels.labelOff.gameObject.SetActive(!this.IsOn);
 
             if (this.IsOn)
             {
@@ -70,6 +91,13 @@ namespace Rossoforge.UI.Controls.Switchs
                 recTransform.SetLeftMargin(margin);
                 recTransform.SetWidth(widgth);
             }
+        }
+
+        private void UpdateInteractivleView()
+        {
+            _canvasGroup.interactable = _interactable;
+            _canvasGroup.blocksRaycasts = _interactable;
+            _canvasGroup.alpha = _interactable ? 1f : 0.5f;
         }
     }
 }
