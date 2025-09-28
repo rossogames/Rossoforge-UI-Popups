@@ -9,7 +9,7 @@ namespace Rossoforge.UI.Controls.Switchs
         private ISwitchValueChangedListener<T> _eventListener;
         private T _arg;
 
-        public bool Value => _switch.Value;
+        public bool IsOn => _switch.IsOn;
 
         private void Awake()
         {

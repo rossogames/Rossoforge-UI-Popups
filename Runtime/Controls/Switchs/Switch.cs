@@ -9,21 +9,21 @@ namespace Rossoforge.UI.Controls.Switchs
     {
         [SerializeField] private SwitchImages images;
         [SerializeField] private SwitchLabels labels;
-        [SerializeField] private bool _value;
+        [SerializeField] private bool _isOn;
 
         private const float margin = -10;
         private const float widgth = 86;
 
         public UnityEvent onValueChanged;
 
-        public bool Value
+        public bool IsOn
         {
-            get => _value;
+            get => _isOn;
             set
             {
-                if (_value != value)
+                if (_isOn != value)
                 {
-                    _value = value;
+                    _isOn = value;
                     UpdateToggle();
                     onValueChanged.Invoke();
                 }
@@ -32,7 +32,7 @@ namespace Rossoforge.UI.Controls.Switchs
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            this.Value = !this.Value;
+            this.IsOn = !this.IsOn;
         }
 
         private void OnValidate()
@@ -44,12 +44,12 @@ namespace Rossoforge.UI.Controls.Switchs
         {
             var recTransform = (RectTransform)images.toggle.transform;
 
-            images.backgroundOn.gameObject.SetActive(this.Value);
-            images.backgroundOff.gameObject.SetActive(!this.Value);
-            labels.labelOn.gameObject.SetActive(this.Value);
-            labels.labelOff.gameObject.SetActive(!this.Value);
+            images.backgroundOn.gameObject.SetActive(this.IsOn);
+            images.backgroundOff.gameObject.SetActive(!this.IsOn);
+            labels.labelOn.gameObject.SetActive(this.IsOn);
+            labels.labelOff.gameObject.SetActive(!this.IsOn);
 
-            if (this.Value)
+            if (this.IsOn)
             {
                 recTransform.SetAnchor(RectTransformAnchorHorizontal.Right, RectTransformAnchorVertical.Middle);
                 recTransform.SetRightMargin(margin);
