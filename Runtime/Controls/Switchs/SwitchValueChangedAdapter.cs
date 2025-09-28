@@ -28,7 +28,7 @@ namespace Rossoforge.UI.Controls.Switchs
             _switch.onValueChanged.RemoveListener(OnSwitchChanged);
         }
 
-        private void OnSwitchChanged()
+        private void OnSwitchChanged(bool isOn)
         {
             if (_eventListener != null)
                 _eventListener.OnSwitchValueChangedInvoked(_arg);

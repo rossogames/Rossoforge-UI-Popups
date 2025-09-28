@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -14,7 +15,7 @@ namespace Rossoforge.UI.Controls.Switchs
         private const float margin = -10;
         private const float widgth = 86;
 
-        public UnityEvent onValueChanged;
+        public UnityEvent<bool> onValueChanged;
 
         public bool IsOn
         {
@@ -25,7 +26,7 @@ namespace Rossoforge.UI.Controls.Switchs
                 {
                     _isOn = value;
                     UpdateToggle();
-                    onValueChanged.Invoke();
+                    onValueChanged.Invoke(value);
                 }
             }
         }
@@ -35,10 +36,18 @@ namespace Rossoforge.UI.Controls.Switchs
             this.IsOn = !this.IsOn;
         }
 
+#if UNITY_EDITOR
         private void OnValidate()
         {
-            UpdateToggle();
+            EditorApplication.delayCall += () =>
+            {
+                if (this == null)
+                    return;
+
+                UpdateToggle();
+            };
         }
+#endif 
 
         private void UpdateToggle()
         {
