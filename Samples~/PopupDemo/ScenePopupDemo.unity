@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba0759d23313984db1fc72f01b3490f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _uiServiceData: {fileID: 11400000, guid: 668d0bce44f18134fbed5d072edd1335, type: 2}
 --- !u!1 &282892432
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +331,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupReference: {fileID: 11400000, guid: f35d30f4fc3a0374d971bf39cf7914c7, type: 2}
-  popupAsyncReference: {fileID: 11400000, guid: 448a80541675d5f49a5a45e9c5f922d1, type: 2}
 --- !u!4 &802156375
 Transform:
   m_ObjectHideFlags: 0

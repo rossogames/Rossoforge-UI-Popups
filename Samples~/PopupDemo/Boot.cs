@@ -11,6 +11,9 @@ namespace Rossoforge.UI.Popups.PopupDemo
 {
     public class Boot : MonoBehaviour
     {
+        [SerializeField]
+        private UIServiceData _uiServiceData;
+
         private void Awake()
         {
             // Setup
@@ -18,7 +21,7 @@ namespace Rossoforge.UI.Popups.PopupDemo
 
             var eventService = new EventService();
             var poolService = new PoolService();
-            var uiService = new UIService(eventService, poolService);
+            var uiService = new UIService(eventService, poolService, _uiServiceData);
 
             ServiceLocator.Register<IEventService>(eventService);
             ServiceLocator.Register<IPoolService>(poolService);
