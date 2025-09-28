@@ -14,7 +14,7 @@ namespace Rossoforge.UI.Controls.Switchs
         private const float margin = -10;
         private const float widgth = 86;
 
-        public UnityEvent onSwitchChanged;
+        public UnityEvent onValueChanged;
 
         public bool Value
         {
@@ -25,7 +25,7 @@ namespace Rossoforge.UI.Controls.Switchs
                 {
                     _value = value;
                     UpdateToggle();
-                    onSwitchChanged.Invoke();
+                    onValueChanged.Invoke();
                 }
             }
         }
