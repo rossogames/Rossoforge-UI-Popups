@@ -1,7 +1,6 @@
-using Rossoforge.Core;
 using UnityEngine;
 
-namespace Rossoforge.UI
+namespace Rossoforge.UI.Service
 {
     [CreateAssetMenu(fileName = nameof(UIServiceData), menuName = "Rossoforge/UI/Service Data")]
     public class UIServiceData : ScriptableObject
