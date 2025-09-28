@@ -9,18 +9,21 @@ namespace Rossoforge.UI.Controls.Switchs
     {
         [SerializeField] private SwitchImages images;
         [SerializeField] private SwitchLabels labels;
-        [SerializeField] private bool isOn;
+        [SerializeField] private bool _value;
+
+        private const float margin = -10;
+        private const float widgth = 86;
 
         public UnityEvent onSwitchChanged;
 
-        public bool IsOn
+        public bool Value
         {
-            get => isOn;
+            get => _value;
             set
             {
-                if (isOn != value)
+                if (_value != value)
                 {
-                    isOn = value;
+                    _value = value;
                     UpdateToggle();
                     onSwitchChanged.Invoke();
                 }
@@ -29,7 +32,7 @@ namespace Rossoforge.UI.Controls.Switchs
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            this.IsOn = !this.IsOn;
+            this.Value = !this.Value;
         }
 
         private void OnValidate()
@@ -41,14 +44,12 @@ namespace Rossoforge.UI.Controls.Switchs
         {
             var recTransform = (RectTransform)images.toggle.transform;
 
-            images.backgroundOn.gameObject.SetActive(this.IsOn);
-            images.backgroundOff.gameObject.SetActive(!this.IsOn);
-            labels.labelOn.gameObject.SetActive(this.IsOn);
-            labels.labelOff.gameObject.SetActive(!this.IsOn);
+            images.backgroundOn.gameObject.SetActive(this.Value);
+            images.backgroundOff.gameObject.SetActive(!this.Value);
+            labels.labelOn.gameObject.SetActive(this.Value);
+            labels.labelOff.gameObject.SetActive(!this.Value);
 
-            float margin = -10;
-            float widgth = 86;
-            if (this.IsOn)
+            if (this.Value)
             {
                 recTransform.SetAnchor(RectTransformAnchorHorizontal.Right, RectTransformAnchorVertical.Middle);
                 recTransform.SetRightMargin(margin);

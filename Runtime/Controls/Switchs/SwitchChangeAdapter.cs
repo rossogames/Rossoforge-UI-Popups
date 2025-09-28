@@ -9,6 +9,8 @@ namespace Rossoforge.UI.Controls.Switchs
         private ISwitchChangedListener<T> _eventListener;
         private T _arg;
 
+        public bool Value => _switch.Value;
+
         private void Awake()
         {
             _switch = GetComponent<Switch>();
