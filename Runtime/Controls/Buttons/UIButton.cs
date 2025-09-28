@@ -1,20 +1,23 @@
 using Rossoforge.Core.UI;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Rossoforge.UI.Controls
+namespace Rossoforge.UI.Controls.Buttons
 {
     [RequireComponent(typeof(Button))]
-    public abstract class UIButton<T> : MonoBehaviour
+    public abstract class UIButton<T> : MonoBehaviour where T : UIButton<T>
     {
         private Button _button;
 
         private IButtonClickListener<T> _clickListener;
+        private T _arg;
 
         private void Awake()
         {
             _button = GetComponent<Button>();
             _clickListener = GetComponentInParent<IButtonClickListener<T>>(true);
+            _arg = GetComponent<T>();
         }
 
         private void OnEnable()
@@ -29,7 +32,8 @@ namespace Rossoforge.UI.Controls
 
         private void OnClick()
         {
-            _clickListener.OnButtonClickInvoked(default);
+            if (_clickListener != null)
+                _clickListener.OnButtonClickInvoked(_arg);
         }
     }
 }

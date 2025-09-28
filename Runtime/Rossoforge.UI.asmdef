@@ -2,7 +2,9 @@
     "name": "Rossoforge.UI",
     "rootNamespace": "Rossoforge.UI",
     "references": [
-        "GUID:b3cbb51ff65434d449548fe48c6c6d5e"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:b3cbb51ff65434d449548fe48c6c6d5e",
+        "GUID:3f3dee62c2ff682489e665fc97f04d0a"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
