@@ -1,7 +1,7 @@
 namespace Rossoforge.UI.Controls.InputFields
 {
-    public interface IInputFieldValueChangedListener<T> where T : InputFieldEventsAdapter<T>
+    public interface IInputFieldValueChangedListener<T> where T : InputFieldEventsHandler<T>
     {
-        void OnInputFieldValueChangedInvoked(T eventArg);
+        void OnValueChanged(T eventArg);
     }
 }

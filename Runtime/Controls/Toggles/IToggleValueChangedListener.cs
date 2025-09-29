@@ -1,7 +1,7 @@
 namespace Rossoforge.UI.Controls.Toggles
 {
-    public interface IToggleValueChangedListener<T>  where T: ToggleEventsAdapter<T>
+    public interface IToggleValueChangedListener<T>  where T: ToggleEventsHandler<T>
     {
-        void OnToggleValueChangedInvoked(T eventArg);
+        void OnValueChanged(T eventArg);
     }
 }

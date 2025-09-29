@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Rossoforge.UI.Controls.InputFields
 {
     [RequireComponent(typeof(TMP_InputField))]
-    public abstract class InputFieldEventsAdapter<T> : MonoBehaviour where T : InputFieldEventsAdapter<T>
+    public abstract class InputFieldEventsHandler<T> : MonoBehaviour where T : InputFieldEventsHandler<T>
     {
         private TMP_InputField _inputField;
         private IInputFieldValueChangedListener<T> _valueChangedListener;
@@ -33,11 +33,11 @@ namespace Rossoforge.UI.Controls.InputFields
 
         private void OnValueChanged(string value)
         {
-            _valueChangedListener?.OnInputFieldValueChangedInvoked(this as T);
+            _valueChangedListener?.OnValueChanged(this as T);
         }
         private void OnEndEdit(string value)
         {
-            _endEditListener?.OnInputFieldEndEditInvoked(this as T);
+            _endEditListener?.OnEndEdit(this as T);
         }
     }
 }

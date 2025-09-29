@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace Rossoforge.UI.Controls.Buttons
 {
     [RequireComponent(typeof(Button))]
-    public abstract class ButtonEventsAdapter<T> : MonoBehaviour where T : ButtonEventsAdapter<T>
+    public abstract class ButtonEventsHandler<T> : MonoBehaviour where T : ButtonEventsHandler<T>
     {
         private Button _button;
         private IButtonClickListener<T> _clickListener;
@@ -27,7 +27,7 @@ namespace Rossoforge.UI.Controls.Buttons
 
         private void OnClick()
         {
-            _clickListener?.OnButtonClickInvoked(this as T);
+            _clickListener?.OnClick(this as T);
         }
     }
 }

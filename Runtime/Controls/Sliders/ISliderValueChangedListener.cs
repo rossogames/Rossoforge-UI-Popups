@@ -1,7 +1,7 @@
 namespace Rossoforge.UI.Controls.Sliders
 {
-    public interface ISliderValueChangedListener<T> where T : SliderEventsAdapter<T>
+    public interface ISliderValueChangedListener<T> where T : SliderEventsHandler<T>
     {
-        void OnSliderValueChangedInvoked(T eventArg);
+        void OnValueChanged(T eventArg);
     }
 }

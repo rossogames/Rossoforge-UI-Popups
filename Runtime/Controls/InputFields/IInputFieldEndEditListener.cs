@@ -1,7 +1,7 @@
 ﻿namespace Rossoforge.UI.Controls.InputFields
 {
-    public interface IInputFieldEndEditListener<T> where T : InputFieldEventsAdapter<T>
+    public interface IInputFieldEndEditListener<T> where T : InputFieldEventsHandler<T>
     {
-        void OnInputFieldEndEditInvoked(T arg);
+        void OnEndEdit(T arg);
     }
 }

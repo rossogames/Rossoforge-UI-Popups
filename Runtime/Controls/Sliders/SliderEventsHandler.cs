@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace Rossoforge.UI.Controls.Sliders
 {
     [RequireComponent(typeof(Slider))]
-    public abstract class SliderEventsAdapter<T> : MonoBehaviour where T : SliderEventsAdapter<T>
+    public abstract class SliderEventsHandler<T> : MonoBehaviour where T : SliderEventsHandler<T>
     {
         private Slider _slider;
         private ISliderValueChangedListener<T> _valueChangedListener;
@@ -29,7 +29,7 @@ namespace Rossoforge.UI.Controls.Sliders
 
         private void OnValueChanged(float value)
         {
-            _valueChangedListener?.OnSliderValueChangedInvoked(this as T);
+            _valueChangedListener?.OnValueChanged(this as T);
         }
     }
 }

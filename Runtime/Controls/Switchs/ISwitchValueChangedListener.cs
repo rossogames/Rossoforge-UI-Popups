@@ -1,7 +1,7 @@
 namespace Rossoforge.UI.Controls.Switchs
 {
-    public interface ISwitchValueChangedListener<T> where T : SwitchEventsAdapter<T>
+    public interface ISwitchValueChangedListener<T> where T : SwitchEventsHandler<T>
     {
-        void OnSwitchValueChangedInvoked(T eventArg);
+        void OnValueChanged(T eventArg);
     }
 }
