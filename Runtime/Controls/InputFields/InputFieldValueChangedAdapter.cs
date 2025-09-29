@@ -32,7 +32,7 @@ namespace Rossoforge.UI.Controls.InputFields
         private void OnValueChanged(string value)
         {
             if (_eventListener != null)
-                _eventListener.OnValueChangedInvoked(_arg);
+                _eventListener.OnInputFieldValueChangedInvoked(_arg);
         }
     }
 }

@@ -20,15 +20,15 @@ namespace Rossoforge.UI.Controls.Switchs
 
         private void OnEnable()
         {
-            _switch.onValueChanged.AddListener(OnSwitchChanged);
+            _switch.onValueChanged.AddListener(OnValueChanged);
         }
 
         private void OnDisable()
         {
-            _switch.onValueChanged.RemoveListener(OnSwitchChanged);
+            _switch.onValueChanged.RemoveListener(OnValueChanged);
         }
 
-        private void OnSwitchChanged(bool isOn)
+        private void OnValueChanged(bool isOn)
         {
             if (_eventListener != null)
                 _eventListener.OnSwitchValueChangedInvoked(_arg);

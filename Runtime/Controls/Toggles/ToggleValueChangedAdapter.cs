@@ -21,15 +21,15 @@ namespace Rossoforge.UI.Controls.Toggles
 
         private void OnEnable()
         {
-            _toggle.onValueChanged.AddListener(OnToggleChanged);
+            _toggle.onValueChanged.AddListener(OnValueChanged);
         }
 
         private void OnDisable()
         {
-            _toggle.onValueChanged.RemoveListener(OnToggleChanged);
+            _toggle.onValueChanged.RemoveListener(OnValueChanged);
         }
 
-        private void OnToggleChanged(bool isOn)
+        private void OnValueChanged(bool isOn)
         {
             if (_eventListener != null)
                 _eventListener.OnToggleValueChangedInvoked(_arg);

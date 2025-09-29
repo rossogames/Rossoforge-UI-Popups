@@ -21,15 +21,15 @@ namespace Rossoforge.UI.Controls.Sliders
 
         private void OnEnable()
         {
-            _slider.onValueChanged.AddListener(OnSliderChanged);
+            _slider.onValueChanged.AddListener(OnValueChanged);
         }
 
         private void OnDisable()
         {
-            _slider.onValueChanged.RemoveListener(OnSliderChanged);
+            _slider.onValueChanged.RemoveListener(OnValueChanged);
         }
 
-        private void OnSliderChanged(float value)
+        private void OnValueChanged(float value)
         {
             if (_eventListener != null)
                 _eventListener.OnSliderValueChangedInvoked(_arg);
