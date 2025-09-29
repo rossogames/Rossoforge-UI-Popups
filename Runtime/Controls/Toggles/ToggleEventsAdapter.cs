@@ -4,10 +4,10 @@ using UnityEngine.UI;
 namespace Rossoforge.UI.Controls.Toggles
 {
     [RequireComponent(typeof(Toggle))]
-    public abstract class ToggleValueChangedAdapter<T> : MonoBehaviour where T : ToggleValueChangedAdapter<T>
+    public abstract class ToggleEventsAdapter<T> : MonoBehaviour where T : ToggleEventsAdapter<T>
     {
         private Toggle _toggle;
-        private IToggleValueChangedListener<T> _eventListener;
+        private IToggleValueChangedListener<T> _valueChangedListener;
         private T _arg;
 
         public bool IsOn => _toggle.isOn;
@@ -15,7 +15,7 @@ namespace Rossoforge.UI.Controls.Toggles
         private void Awake()
         {
             _toggle = GetComponent<Toggle>();
-            _eventListener = GetComponentInParent<IToggleValueChangedListener<T>>(true);
+            _valueChangedListener = GetComponentInParent<IToggleValueChangedListener<T>>(true);
             _arg = GetComponent<T>();
         }
 
@@ -31,8 +31,7 @@ namespace Rossoforge.UI.Controls.Toggles
 
         private void OnValueChanged(bool isOn)
         {
-            if (_eventListener != null)
-                _eventListener.OnToggleValueChangedInvoked(_arg);
+            _valueChangedListener?.OnToggleValueChangedInvoked(_arg);
         }
     }
 }

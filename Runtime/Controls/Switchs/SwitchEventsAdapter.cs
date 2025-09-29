@@ -3,10 +3,10 @@ using UnityEngine;
 namespace Rossoforge.UI.Controls.Switchs
 {
     [RequireComponent(typeof(Switch))]
-    public abstract class SwitchValueChangedAdapter<T> : MonoBehaviour where T : SwitchValueChangedAdapter<T>
+    public abstract class SwitchEventsAdapter<T> : MonoBehaviour where T : SwitchEventsAdapter<T>
     {
         private Switch _switch;
-        private ISwitchValueChangedListener<T> _eventListener;
+        private ISwitchValueChangedListener<T> _valueChangedListener;
         private T _arg;
 
         public bool IsOn => _switch.IsOn;
@@ -14,7 +14,7 @@ namespace Rossoforge.UI.Controls.Switchs
         private void Awake()
         {
             _switch = GetComponent<Switch>();
-            _eventListener = GetComponentInParent<ISwitchValueChangedListener<T>>(true);
+            _valueChangedListener = GetComponentInParent<ISwitchValueChangedListener<T>>(true);
             _arg = GetComponent<T>();
         }
 
@@ -30,8 +30,7 @@ namespace Rossoforge.UI.Controls.Switchs
 
         private void OnValueChanged(bool isOn)
         {
-            if (_eventListener != null)
-                _eventListener.OnSwitchValueChangedInvoked(_arg);
+            _valueChangedListener?.OnSwitchValueChangedInvoked(_arg);
         }
     }
 }

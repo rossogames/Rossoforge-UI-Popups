@@ -4,16 +4,16 @@ using UnityEngine.UI;
 namespace Rossoforge.UI.Controls.Buttons
 {
     [RequireComponent(typeof(Button))]
-    public abstract class ButtonClickAdapter<T> : MonoBehaviour where T : ButtonClickAdapter<T>
+    public abstract class ButtonEventsAdapter<T> : MonoBehaviour where T : ButtonEventsAdapter<T>
     {
         private Button _button;
-        private IButtonClickListener<T> _eventListener;
+        private IButtonClickListener<T> _clickListener;
         private T _arg;
 
         private void Awake()
         {
             _button = GetComponent<Button>();
-            _eventListener = GetComponentInParent<IButtonClickListener<T>>(true);
+            _clickListener = GetComponentInParent<IButtonClickListener<T>>(true);
             _arg = GetComponent<T>();
         }
 
@@ -29,8 +29,7 @@ namespace Rossoforge.UI.Controls.Buttons
 
         private void OnClick()
         {
-            if (_eventListener != null)
-                _eventListener.OnButtonClickInvoked(_arg);
+            _clickListener?.OnButtonClickInvoked(_arg);
         }
     }
 }
