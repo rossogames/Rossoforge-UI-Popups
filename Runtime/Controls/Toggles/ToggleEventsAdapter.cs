@@ -8,7 +8,6 @@ namespace Rossoforge.UI.Controls.Toggles
     {
         private Toggle _toggle;
         private IToggleValueChangedListener<T> _valueChangedListener;
-        private T _arg;
 
         public bool IsOn => _toggle.isOn;
 
@@ -16,7 +15,6 @@ namespace Rossoforge.UI.Controls.Toggles
         {
             _toggle = GetComponent<Toggle>();
             _valueChangedListener = GetComponentInParent<IToggleValueChangedListener<T>>(true);
-            _arg = GetComponent<T>();
         }
 
         private void OnEnable()
@@ -31,7 +29,7 @@ namespace Rossoforge.UI.Controls.Toggles
 
         private void OnValueChanged(bool isOn)
         {
-            _valueChangedListener?.OnToggleValueChangedInvoked(_arg);
+            _valueChangedListener?.OnToggleValueChangedInvoked(this as T);
         }
     }
 }

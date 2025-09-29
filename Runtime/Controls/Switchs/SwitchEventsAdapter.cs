@@ -7,7 +7,6 @@ namespace Rossoforge.UI.Controls.Switchs
     {
         private Switch _switch;
         private ISwitchValueChangedListener<T> _valueChangedListener;
-        private T _arg;
 
         public bool IsOn => _switch.IsOn;
 
@@ -15,7 +14,6 @@ namespace Rossoforge.UI.Controls.Switchs
         {
             _switch = GetComponent<Switch>();
             _valueChangedListener = GetComponentInParent<ISwitchValueChangedListener<T>>(true);
-            _arg = GetComponent<T>();
         }
 
         private void OnEnable()
@@ -30,7 +28,7 @@ namespace Rossoforge.UI.Controls.Switchs
 
         private void OnValueChanged(bool isOn)
         {
-            _valueChangedListener?.OnSwitchValueChangedInvoked(_arg);
+            _valueChangedListener?.OnSwitchValueChangedInvoked(this as T);
         }
     }
 }

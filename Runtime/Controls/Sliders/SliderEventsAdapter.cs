@@ -8,7 +8,6 @@ namespace Rossoforge.UI.Controls.Sliders
     {
         private Slider _slider;
         private ISliderValueChangedListener<T> _valueChangedListener;
-        private T _arg;
 
         public float Value => _slider.value;
 
@@ -16,7 +15,6 @@ namespace Rossoforge.UI.Controls.Sliders
         {
             _slider = GetComponent<Slider>();
             _valueChangedListener = GetComponentInParent<ISliderValueChangedListener<T>>(true);
-            _arg = GetComponent<T>();
         }
 
         private void OnEnable()
@@ -31,7 +29,7 @@ namespace Rossoforge.UI.Controls.Sliders
 
         private void OnValueChanged(float value)
         {
-            _valueChangedListener?.OnSliderValueChangedInvoked(_arg);
+            _valueChangedListener?.OnSliderValueChangedInvoked(this as T);
         }
     }
 }

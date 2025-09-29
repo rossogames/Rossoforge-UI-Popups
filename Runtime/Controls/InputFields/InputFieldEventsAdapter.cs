@@ -9,7 +9,6 @@ namespace Rossoforge.UI.Controls.InputFields
         private TMP_InputField _inputField;
         private IInputFieldValueChangedListener<T> _valueChangedListener;
         private IInputFieldEndEditListener<T> _endEditListener;
-        private T _arg;
 
         public string Text => _inputField.text;
 
@@ -18,7 +17,6 @@ namespace Rossoforge.UI.Controls.InputFields
             _inputField = GetComponent<TMP_InputField>();
             _valueChangedListener = GetComponentInParent<IInputFieldValueChangedListener<T>>(true);
             _endEditListener = GetComponentInParent<IInputFieldEndEditListener<T>>(true);
-            _arg = GetComponent<T>();
         }
 
         private void OnEnable()
@@ -35,11 +33,11 @@ namespace Rossoforge.UI.Controls.InputFields
 
         private void OnValueChanged(string value)
         {
-            _valueChangedListener?.OnInputFieldValueChangedInvoked(_arg);
+            _valueChangedListener?.OnInputFieldValueChangedInvoked(this as T);
         }
         private void OnEndEdit(string value)
         {
-            _endEditListener?.OnInputFieldEndEditInvoked(_arg);
+            _endEditListener?.OnInputFieldEndEditInvoked(this as T);
         }
     }
 }

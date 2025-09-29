@@ -8,13 +8,11 @@ namespace Rossoforge.UI.Controls.Buttons
     {
         private Button _button;
         private IButtonClickListener<T> _clickListener;
-        private T _arg;
 
         private void Awake()
         {
             _button = GetComponent<Button>();
             _clickListener = GetComponentInParent<IButtonClickListener<T>>(true);
-            _arg = GetComponent<T>();
         }
 
         private void OnEnable()
@@ -29,7 +27,7 @@ namespace Rossoforge.UI.Controls.Buttons
 
         private void OnClick()
         {
-            _clickListener?.OnButtonClickInvoked(_arg);
+            _clickListener?.OnButtonClickInvoked(this as T);
         }
     }
 }
