@@ -1,4 +1,4 @@
-namespace Rossoforge.UI.Controls.Switchs
+namespace Rossoforge.UI.Controls.Switches
 {
     public interface ISwitchValueChangedListener<T> where T : SwitchEventsHandler<T>
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using TMPro;
 
-namespace Rossoforge.UI.Controls.Switchs
+namespace Rossoforge.UI.Controls.Switches
 {
     [Serializable]
     public class SwitchLabels

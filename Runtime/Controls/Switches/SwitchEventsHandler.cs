@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Rossoforge.UI.Controls.Switchs
+namespace Rossoforge.UI.Controls.Switches
 {
     [RequireComponent(typeof(Switch))]
     public abstract class SwitchEventsHandler<T> : MonoBehaviour where T : SwitchEventsHandler<T>
