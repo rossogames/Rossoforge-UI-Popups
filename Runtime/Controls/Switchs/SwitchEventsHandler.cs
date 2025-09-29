@@ -9,6 +9,7 @@ namespace Rossoforge.UI.Controls.Switchs
         private ISwitchValueChangedListener<T> _valueChangedListener;
 
         public bool IsOn => _switch.IsOn;
+        public Switch Switch => _switch;
 
         private void Awake()
         {
@@ -28,7 +29,7 @@ namespace Rossoforge.UI.Controls.Switchs
 
         private void OnValueChanged(bool isOn)
         {
-            _valueChangedListener?.OnValueChanged(this as T);
+            _valueChangedListener?.OnValueChanged((T)this);
         }
     }
 }

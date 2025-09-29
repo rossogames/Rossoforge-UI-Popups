@@ -11,6 +11,7 @@ namespace Rossoforge.UI.Controls.InputFields
         private IInputFieldEndEditListener<T> _endEditListener;
 
         public string Text => _inputField.text;
+        public TMP_InputField InputField => _inputField;
 
         private void Awake()
         {
@@ -33,11 +34,11 @@ namespace Rossoforge.UI.Controls.InputFields
 
         private void OnValueChanged(string value)
         {
-            _valueChangedListener?.OnValueChanged(this as T);
+            _valueChangedListener?.OnValueChanged((T)this);
         }
         private void OnEndEdit(string value)
         {
-            _endEditListener?.OnEndEdit(this as T);
+            _endEditListener?.OnEndEdit((T)this);
         }
     }
 }
