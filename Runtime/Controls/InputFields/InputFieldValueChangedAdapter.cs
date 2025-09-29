@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Rossoforge.UI.Controls.InputFields
 {
     [RequireComponent(typeof(TMP_InputField))]
-    public class InputFieldValueChangedAdapter<T> : MonoBehaviour where T : InputFieldValueChangedAdapter<T>
+    public abstract class InputFieldValueChangedAdapter<T> : MonoBehaviour where T : InputFieldValueChangedAdapter<T>
     {
         private TMP_InputField _inputField;
         private IInputFieldValueChangedListener<T> _eventListener;
