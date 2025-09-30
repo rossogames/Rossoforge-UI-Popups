@@ -1,12 +1,13 @@
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Rossoforge.UI.Controls.Dropdowns
+namespace Rossoforge.UI.Controls.GenericDropDowns
 {
-    [System.Serializable]
+    [Serializable]
     public class DropdownItemSelectedEvent : UnityEvent<object> { }
 
     public class GenericDropdown : TMP_Dropdown
@@ -14,13 +15,15 @@ namespace Rossoforge.UI.Controls.Dropdowns
         private List<object> items = new();
 
         [SerializeField] private string _textMember;
-        [SerializeField] private DropdownItemSelectedEvent _onItemSelected = new();
+        [SerializeField] private DropdownItemSelectedEvent _onSelectedItemChanged = new();
 
         public string TextMember
         {
             get => _textMember;
             set => _textMember = value;
         }
+
+        public DropdownItemSelectedEvent OnSelectedItemChanged => _onSelectedItemChanged;
 
         protected override void Awake()
         {
@@ -88,7 +91,7 @@ namespace Rossoforge.UI.Controls.Dropdowns
         private void HandleValueChanged(int index)
         {
             if (index >= 0 && index < items.Count)
-                _onItemSelected.Invoke(items[index]);
+                _onSelectedItemChanged.Invoke(items[index]);
         }
     }
 }

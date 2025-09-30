@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditor.UI;
 using UnityEngine;
 
-namespace Rossoforge.UI.Controls.Dropdowns
+namespace Rossoforge.UI.Controls.GenericDropDowns
 {
     [CustomEditor(typeof(GenericDropdown))]
     [CanEditMultipleObjects]
@@ -16,7 +16,7 @@ namespace Rossoforge.UI.Controls.Dropdowns
         {
             base.OnEnable();
             textMemberProp = serializedObject.FindProperty("_textMember");
-            onItemSelectedProp = serializedObject.FindProperty("_onItemSelected");
+            onItemSelectedProp = serializedObject.FindProperty("_onSelectedItemChanged");
         }
 
         public override void OnInspectorGUI()
@@ -27,7 +27,7 @@ namespace Rossoforge.UI.Controls.Dropdowns
 
             EditorGUILayout.Space();
             EditorGUILayout.PropertyField(textMemberProp, new GUIContent("Text Member"));
-            EditorGUILayout.PropertyField(onItemSelectedProp, new GUIContent("On Item Selected"));
+            EditorGUILayout.PropertyField(onItemSelectedProp, new GUIContent("On Item Selected Changed"));
 
             serializedObject.ApplyModifiedProperties();
         }
