@@ -40,6 +40,6 @@ namespace Rossoforge.UI.Popups.PopupBase
         public virtual void OnClosing() => Presenter.OnClosing();
         public virtual void OnDeactivate() => Presenter.OnDeactivate();
 
-        public virtual void OnClick(ButtonClickEventArg<PopupButtonClose> eventArg) => Close();
+        public virtual void OnClick(ButtonEventArg<PopupButtonClose> eventArg) => Close();
     }
 }
