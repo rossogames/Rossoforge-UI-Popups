@@ -9,9 +9,6 @@ namespace Rossoforge.UI.Controls.Toggles
         private Toggle _toggle;
         private IToggleValueChangedListener<T> _valueChangedListener;
 
-        public bool IsOn => _toggle.isOn;
-        public Toggle Toggle => _toggle;
-
         private void Awake()
         {
             _toggle = GetComponent<Toggle>();
@@ -30,7 +27,12 @@ namespace Rossoforge.UI.Controls.Toggles
 
         private void OnValueChanged(bool isOn)
         {
-            _valueChangedListener?.OnValueChanged((T)this);
+            var eventArg = new ToggleClickEventArg<T>
+            {
+                Toggle = _toggle,
+                IsOn = isOn
+            };
+            _valueChangedListener?.OnValueChanged(eventArg);
         }
     }
 }
