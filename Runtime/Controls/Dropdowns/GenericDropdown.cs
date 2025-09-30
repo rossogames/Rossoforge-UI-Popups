@@ -2,14 +2,19 @@ using System.Collections.Generic;
 using System.Reflection;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Rossoforge.UI.Controls.Dropdowns
 {
+    [System.Serializable]
+    public class DropdownItemSelectedEvent : UnityEvent<object> { }
+
     public class GenericDropdown : TMP_Dropdown
     {
         private List<object> items = new();
 
         [SerializeField] private string _textMember;
+        [SerializeField] private DropdownItemSelectedEvent _onItemSelected = new();
 
         public string TextMember
         {
@@ -17,11 +22,20 @@ namespace Rossoforge.UI.Controls.Dropdowns
             set => _textMember = value;
         }
 
+        protected override void Awake()
+        {
+            base.Awake();
+            onValueChanged.AddListener(HandleValueChanged);
+        }
+
         public void AddItem<T>(T item)
         {
             items.Add(item);
             options.Add(new OptionData(GetItemText(item)));
             RefreshShownValue();
+
+            if (items.Count == 1)
+                HandleValueChanged(0);
         }
 
         public void AddItems<T>(IEnumerable<T> newItems)
@@ -32,6 +46,7 @@ namespace Rossoforge.UI.Controls.Dropdowns
                 options.Add(new OptionData(GetItemText(item)));
             }
             RefreshShownValue();
+            HandleValueChanged(0);
         }
 
         public T GetSelectedItem<T>()
@@ -68,6 +83,12 @@ namespace Rossoforge.UI.Controls.Dropdowns
 
             Debug.LogWarning($"Property '{TextMember}' not found in type {item.GetType().Name}. Fallback to ToString().");
             return item.ToString();
+        }
+
+        private void HandleValueChanged(int index)
+        {
+            if (index >= 0 && index < items.Count)
+                _onItemSelected.Invoke(items[index]);
         }
     }
 }
