@@ -9,15 +9,17 @@
 
 **Rossoforge-UI-Popups** Is a modular UI service for Unity that manages popups with pooling, async/await support, and event-driven lifecycle handling. Provides easy-to-use methods to open, await, and cancel popups, with automatic sorting order.
 
-The following dependencies must be installed
+#
+**Version:** Unity 6 or higher
+
+**Tutorial:** [Pending...]
+
+**Dependencies:**
 * [[Rossoforge-Core]](https://github.com/rossogames/Rossoforge-Core.git)
 * [[Rossoforge-Services]](https://github.com/rossogames/Rossoforge-Services.git)
 * [[Rossoforge-Pool]](https://github.com/rossogames/Rossoforge-Pool.git)
 * [[Rossoforge-UI-Controls]](https://github.com/rossogames/Rossoforge-UI-Controls.git)
 
-**Version**: Unity 6 or higher
-
-**Tutorial**: [Pending..]
 #
 ```csharp
 // Setup (requires Rossoforge-Services)
