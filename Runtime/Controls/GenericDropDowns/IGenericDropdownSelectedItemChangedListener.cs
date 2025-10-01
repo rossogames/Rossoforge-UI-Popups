@@ -1,7 +1,7 @@
 namespace Rossoforge.UI.Controls.GenericDropDowns
 {
-    public interface IGenericDropdownSelectedItemChangedListener<T> where T : GenericDropdownEventsHandler<T>
+    public interface IGenericDropdownSelectedItemChangedListener<T, R> where T : GenericDropdownEventsHandler<T, R>
     {
-        void OnSelectedItemChanged(GenericDropdownEventArg<T> eventArg);
+        void OnSelectedItemChanged(GenericDropdownEventArg<T, R> eventArg);
     }
 }
