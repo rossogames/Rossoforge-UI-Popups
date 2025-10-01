@@ -4,7 +4,7 @@ using Rossoforge.Core.UI;
 using Rossoforge.Events.Service;
 using Rossoforge.Pool.Service;
 using Rossoforge.Services;
-using Rossoforge.UI.Service;
+using Rossoforge.UI.Popups.Service;
 using UnityEngine;
 
 namespace Rossoforge.UI.Popups.PopupDemo
