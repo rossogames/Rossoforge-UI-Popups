@@ -3,11 +3,11 @@
 <table>
   <tr>
     <td><img src="https://github.com/rossogames/Rossoforge-UI-Popups/blob/main/logo.png?raw=true" alt="Rossoforge" width="64"/></td>
-    <td><h2>Rossoforge - UI</h2></td>
+    <td><h2>Rossoforge - UI - Popups</h2></td>
   </tr>
 </table>
 
-**Rossoforge-UI** Is a modular UI service for Unity that manages popups with pooling, async/await support, and event-driven lifecycle handling. Provides easy-to-use methods to open, await, and cancel popups, with automatic sorting order.
+**Rossoforge-UI-Popups** Is a modular UI service for Unity that manages popups with pooling, async/await support, and event-driven lifecycle handling. Provides easy-to-use methods to open, await, and cancel popups, with automatic sorting order.
 
 The following dependencies must be installed
 * [[Rossoforge-Core]](https://github.com/rossogames/Rossoforge-Core.git)
@@ -15,7 +15,9 @@ The following dependencies must be installed
 * [[Rossoforge-Pool]](https://github.com/rossogames/Rossoforge-Pool.git)
 * [[Rossoforge-UI-Controls]](https://github.com/rossogames/Rossoforge-UI-Controls.git)
 
-Watch the tutorial on [Pending..]
+**Version**: Unity 6 or higher
+
+**Tutorial**: [Pending..]
 #
 ```csharp
 // Setup (requires Rossoforge-Services)
