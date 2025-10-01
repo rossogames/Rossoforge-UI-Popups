@@ -1,6 +1,5 @@
 using Rossoforge.Core.UI;
 using Rossoforge.UI.Controls.Buttons;
-using Rossoforge.UI.Popups.Controller;
 using UnityEngine;
 
 namespace Rossoforge.UI.Popups.PopupBase

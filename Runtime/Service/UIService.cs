@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Rossoforge.UI.Service
+namespace Rossoforge.UI.Popups.Service
 {
     public class UIService : IUIService, IInitializable, IDisposable,
         IEventListener<PopupDeactivatedEvent>

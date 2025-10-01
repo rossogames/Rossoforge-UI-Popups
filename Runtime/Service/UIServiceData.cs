@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Rossoforge.UI.Service
+namespace Rossoforge.UI.Popups.Service
 {
     [CreateAssetMenu(fileName = nameof(UIServiceData), menuName = "Rossoforge/UI/Service Data")]
     public class UIServiceData : ScriptableObject
