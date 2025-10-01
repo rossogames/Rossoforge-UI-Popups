@@ -9,9 +9,6 @@ namespace Rossoforge.UI.Controls.Dropdowns
         private TMP_Dropdown _dropdown;
         private IDropdownValueChangedListener<T> _valueChangedListener;
 
-        public int SelectedIndex => _dropdown.value;
-        public TMP_Dropdown Dropdown => _dropdown;
-
         private void Awake()
         {
             _dropdown = GetComponent<TMP_Dropdown>();
@@ -30,7 +27,8 @@ namespace Rossoforge.UI.Controls.Dropdowns
 
         private void OnValueChanged(int value)
         {
-            _valueChangedListener?.OnValueChanged((T)this);
+            var eventArg = new DropdownEventArg<T>((T)this, value);
+            _valueChangedListener?.OnValueChanged(eventArg);
         }
     }
 }

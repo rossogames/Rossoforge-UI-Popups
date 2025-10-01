@@ -27,7 +27,7 @@ namespace Rossoforge.UI.Controls.Toggles
 
         private void OnValueChanged(bool isOn)
         {
-            var eventArg = new ToggleEventArg<T>(_toggle, isOn);
+            var eventArg = new ToggleEventArg<T>((T)this, isOn);
             _valueChangedListener?.OnValueChanged(eventArg);
         }
     }

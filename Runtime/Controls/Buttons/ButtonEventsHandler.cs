@@ -27,7 +27,7 @@ namespace Rossoforge.UI.Controls.Buttons
 
         private void OnClick()
         {
-            var eventArg = new ButtonEventArg<T>(_button);
+            var eventArg = new ButtonEventArg<T>((T)this);
             _clickListener?.OnClick(eventArg);
         }
     }
