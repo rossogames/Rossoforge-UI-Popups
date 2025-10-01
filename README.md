@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <td><img src="https://github.com/rossogames/Rossoforge-UI/blob/main/logo.png?raw=true" alt="Rossoforge" width="64"/></td>
+    <td><img src="https://github.com/rossogames/Rossoforge-UI-Popups/blob/main/logo.png?raw=true" alt="Rossoforge" width="64"/></td>
     <td><h2>Rossoforge - UI</h2></td>
   </tr>
 </table>
@@ -11,8 +11,9 @@
 
 The following dependencies must be installed
 * [[Rossoforge-Core]](https://github.com/rossogames/Rossoforge-Core.git)
-* [Rossoforge-Services](https://github.com/rossogames/Rossoforge-Services.git)
-* [Rossoforge-Pool](https://github.com/rossogames/Rossoforge-Pool.git)
+* [[Rossoforge-Services]](https://github.com/rossogames/Rossoforge-Services.git)
+* [[Rossoforge-Pool]](https://github.com/rossogames/Rossoforge-Pool.git)
+* [[Rossoforge-UI-Controls]](https://github.com/rossogames/Rossoforge-UI-Controls.git)
 
 Watch the tutorial on [Pending..]
 #
