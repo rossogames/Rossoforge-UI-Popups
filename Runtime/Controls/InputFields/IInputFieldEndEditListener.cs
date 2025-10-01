@@ -2,6 +2,6 @@
 {
     public interface IInputFieldEndEditListener<T> where T : InputFieldEventsHandler<T>
     {
-        void OnEndEdit(T arg);
+        void OnEndEdit(InputFieldEventArg<T> arg);
     }
 }

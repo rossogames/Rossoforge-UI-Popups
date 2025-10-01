@@ -12,9 +12,6 @@ namespace Rossoforge.UI.Controls.InputFields
         private IInputFieldOnSelectListener<T> _onSelectListener;
         private IInputFieldOnDeselectListener<T> _onDeselectListener;
 
-        public string Text => _inputField.text;
-        public TMP_InputField InputField => _inputField;
-
         private void Awake()
         {
             _inputField = GetComponent<TMP_InputField>();
@@ -42,19 +39,23 @@ namespace Rossoforge.UI.Controls.InputFields
 
         private void OnValueChanged(string value)
         {
-            _valueChangedListener?.OnValueChanged((T)this);
+            var eventArg = new InputFieldEventArg<T>((T)this, value);
+            _valueChangedListener?.OnValueChanged(eventArg);
         }
         private void OnEndEdit(string value)
         {
-            _endEditListener?.OnEndEdit((T)this);
+            var eventArg = new InputFieldEventArg<T>((T)this, value);
+            _endEditListener?.OnEndEdit(eventArg);
         }
         private void OnSelect(string value)
         {
-            _onSelectListener?.OnSelect((T)this);
+            var eventArg = new InputFieldEventArg<T>((T)this, value);
+            _onSelectListener?.OnSelect(eventArg);
         }
         private void OnDeselect(string value)
         {
-            _onDeselectListener?.OnDeselect((T)this);
+            var eventArg = new InputFieldEventArg<T>((T)this, value);
+            _onDeselectListener?.OnDeselect(eventArg);
         }
     }
 }

@@ -9,9 +9,6 @@ namespace Rossoforge.UI.Controls.Sliders
         private Slider _slider;
         private ISliderValueChangedListener<T> _valueChangedListener;
 
-        public float Value => _slider.value;
-        public Slider Slider => _slider;
-
         private void Awake()
         {
             _slider = GetComponent<Slider>();
@@ -30,7 +27,8 @@ namespace Rossoforge.UI.Controls.Sliders
 
         private void OnValueChanged(float value)
         {
-            _valueChangedListener?.OnValueChanged((T)this);
+            var eventArg = new SliderEventArg<T>((T)this, value);
+            _valueChangedListener?.OnValueChanged(eventArg);
         }
     }
 }

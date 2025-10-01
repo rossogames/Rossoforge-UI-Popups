@@ -8,10 +8,6 @@ namespace Rossoforge.UI.Controls.GenericDropDowns
         private GenericDropdown _dropdown;
         private IGenericDropdownSelectedItemChangedListener<T> _selectedItemChangedListener;
 
-        public object SelectedItem { get; private set; }
-        public int SelectedIndex => _dropdown.value;
-        public GenericDropdown Dropdown => _dropdown;
-
         private void Awake()
         {
             _dropdown = GetComponent<GenericDropdown>();
@@ -30,8 +26,8 @@ namespace Rossoforge.UI.Controls.GenericDropDowns
 
         private void OnSelectedItemChanged(object selectedItem)
         {
-            SelectedItem = selectedItem;
-            _selectedItemChangedListener?.OnSelectedItemChanged((T)this);
+            var eventArgs = new GenericDropdownEventArg<T>((T)this, _dropdown.value, selectedItem);
+            _selectedItemChangedListener?.OnSelectedItemChanged(eventArgs);
         }
     }
 }
