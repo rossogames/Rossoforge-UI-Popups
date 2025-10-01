@@ -15,10 +15,11 @@
 **Tutorial:** [Pending...]
 
 **Dependencies:**
-* [[Rossoforge-Core]](https://github.com/rossogames/Rossoforge-Core.git)
-* [[Rossoforge-Services]](https://github.com/rossogames/Rossoforge-Services.git)
-* [[Rossoforge-Pool]](https://github.com/rossogames/Rossoforge-Pool.git)
-* [[Rossoforge-UI-Controls]](https://github.com/rossogames/Rossoforge-UI-Controls.git)
+* Unity.TextMeshPro
+* [Rossoforge-Core](https://github.com/rossogames/Rossoforge-Core.git)
+* [Rossoforge-Services](https://github.com/rossogames/Rossoforge-Services.git)
+* [Rossoforge-Pool](https://github.com/rossogames/Rossoforge-Pool.git)
+* [Rossoforge-UI-Controls](https://github.com/rossogames/Rossoforge-UI-Controls.git)
 
 #
 ```csharp
