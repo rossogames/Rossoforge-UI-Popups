@@ -15,6 +15,12 @@ namespace Rossoforge.UI.Popups.PopupQuestion
         [SerializeField]
         private TextMeshProUGUI _labelMessage;
 
+        [SerializeField]
+        private TextMeshProUGUI _labelButtonConfirm;
+
+        [SerializeField]
+        private TextMeshProUGUI _labelButtonCancel;
+
         protected override void Awake()
         {
             base.Awake();
@@ -29,6 +35,16 @@ namespace Rossoforge.UI.Popups.PopupQuestion
         public void SetTitleText(string text)
         {
             _labelTitle.text = text;
+        }
+
+        public void SetConfirmButtonText(string text)
+        {
+            _labelButtonConfirm.text = text;
+        }
+
+        public void SetCancelButtonText(string text)
+        {
+            _labelButtonCancel.text = text;
         }
 
         public void OnClick(ButtonEventArg<PopupQuestionButtonOk> eventArg)

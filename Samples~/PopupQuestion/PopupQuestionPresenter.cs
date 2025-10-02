@@ -18,6 +18,8 @@ namespace Rossoforge.UI.Popups.PopupQuestion
             Data.Result = QuestionResult.Cancel;
             View.SetTitleText(Data.Title);
             View.SetMessageText(Data.Message);
+            View.SetConfirmButtonText(Data.ConfirmButtonText);
+            View.SetCancelButtonText(Data.CancelButtonText);
         }
 
         public void Confirm()
