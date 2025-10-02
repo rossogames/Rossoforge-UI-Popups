@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f51f01d1743c85c47a879f3e022a5ac8, type: 3}
-  m_Name: PopupTemplateData
+  m_Name: PopupQuestionPoolData
   m_EditorClassIdentifier: 
-  <AssetReference>k__BackingField: {fileID: 1051220156766687146, guid: be777bf7d0644584389acc60051e3036, type: 3}
+  <AssetReference>k__BackingField: {fileID: 8375124055393085931, guid: a9df2cca543861a479d09cd990646997, type: 3}
   <MaxSize>k__BackingField: 1
