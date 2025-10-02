@@ -913,3 +913,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _labelTitle: {fileID: 2729445069843850654}
   _labelMessage: {fileID: 360823955408602462}
+  _labelButtonConfirm: {fileID: 205880402100575867}
+  _labelButtonCancel: {fileID: 818539216215217925}
