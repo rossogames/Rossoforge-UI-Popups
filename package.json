@@ -1,8 +1,7 @@
 {
-  "name": "com.rossogames.rossoforge-ui",
-  "version": "1.0.0-beta1",
-  "displayName": "Rossoforge-UI",
-  "description": "",
+  "name": "com.rossogames.rossoforge-ui-popups",
+  "version": "1.2.0",
+  "displayName": "Rossoforge-UI-Popups",
   "unity": "2025.0",
   "author": {
     "name": "Agustin Rosso",
@@ -12,6 +11,41 @@
     "rossogames",
     "rossoforge",
     "ui",
-    "UI"
-  ]
+    "UI",
+    "popup",
+    "popups"
+  ],
+  "samples": [
+    {
+      "displayName": "Base Popup",
+      "description": "Contains the base prefab and animator controller used in all popups",
+      "path": "Samples~/PopupBase"
+    },
+    {
+      "displayName": "Popup Animation - FadeInOut",
+      "description": "Contains the animation assets to give the fade in/out effect when opening and closing the popup",
+      "path": "Samples~/PopupAnimationFadeInOut"
+    },
+    {
+      "displayName": "Popup Animation - SizeInOut",
+      "description": "Contains the animation assets to give the size in/out effect when opening and closing the popup",
+      "path": "Samples~/PopupAnimationSizeInOut"
+    },
+    {
+      "displayName": "Popup Template",
+      "description": "Popup's Template ready to adapt, implements a variant of the base popup. Requires 'Base Popup'",
+      "path": "Samples~/PopupTemplate"
+    },
+    {
+      "displayName": "Popup Question",
+      "description": "Variant of the base popup that provides a message box with two buttons, OK and Cancel.'",
+      "path": "Samples~/PopupQuestion"
+    },
+    {
+      "displayName": "Popup usage demo",
+      "description": "Contains a demonstration of how to use the popup. Requires 'Base Popup', 'Popup Template', and at least one animation sample.",
+      "path": "Samples~/PopupDemo"
+    }
+  ],
+  "description": "A modular UI service for Unity that manages popups with pooling, async/await support, and event-driven lifecycle handling. Provides easy-to-use methods to open, await, and cancel popups, with automatic sorting order."
 }

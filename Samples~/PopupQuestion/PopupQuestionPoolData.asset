@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51f01d1743c85c47a879f3e022a5ac8, type: 3}
+  m_Name: PopupQuestionPoolData
+  m_EditorClassIdentifier: 
+  <AssetReference>k__BackingField: {fileID: 8375124055393085931, guid: a9df2cca543861a479d09cd990646997, type: 3}
+  <MaxSize>k__BackingField: 1
