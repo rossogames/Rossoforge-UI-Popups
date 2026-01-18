@@ -4,6 +4,7 @@ using Rossoforge.Core.Pool;
 using Rossoforge.Core.Services;
 using Rossoforge.Core.UI;
 using Rossoforge.UI.Popups.Events;
+using Rossoforge.Utils.Logger;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -72,7 +73,7 @@ namespace Rossoforge.UI.Popups.Service
             await tcs.Task;
 
             return popupView;
-        
+
         }
 #if HAS_ADDRESSABLES
         public async Awaitable<T> OpenPopup<T>(IPooledObjectAsyncData data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self) where T : MonoBehaviour, IPopupView
@@ -98,7 +99,7 @@ namespace Rossoforge.UI.Popups.Service
         {
             if (!popupView.CanBeOpened())
             {
-                Debug.LogWarning($"Popup {popupView.name} cannot be opened. Current state: {popupView.State}");
+                RossoLogger.Warning($"Popup {popupView.name} cannot be opened. Current state: {popupView.State}");
                 return;
             }
 
