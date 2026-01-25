@@ -2,7 +2,7 @@ using Rossoforge.Core.Components;
 using Rossoforge.Core.Events;
 using Rossoforge.Core.Pool;
 using Rossoforge.Core.Services;
-using Rossoforge.Core.UI;
+using Rossoforge.Core.UI.Popups;
 using Rossoforge.UI.Popups.Events;
 using Rossoforge.Utils.Logger;
 using System;
@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace Rossoforge.UI.Popups.Service
 {
-    public class UIService : IUIService, IInitializable, IDisposable,
+    public class PopupService : IPopupService, IInitializable, IDisposable,
         IEventListener<PopupDeactivatedEvent>
     {
         private IEventService _eventService;
@@ -21,10 +21,10 @@ namespace Rossoforge.UI.Popups.Service
         private UIServiceData _serviceData;
         private GameObject _root;
 
-        private List<IPopupView> _openPopups;
-        private Dictionary<IPopupView, TaskCompletionSource<bool>> _popupCompletionSources;
+        private readonly List<IPopupView> _openPopups;
+        private readonly Dictionary<IPopupView, TaskCompletionSource<bool>> _popupCompletionSources;
 
-        public UIService(IEventService eventService, IPoolService poolService, UIServiceData uIServiceData)
+        public PopupService(IEventService eventService, IPoolService poolService, UIServiceData uIServiceData)
         {
             _eventService = eventService;
             _poolService = poolService;
