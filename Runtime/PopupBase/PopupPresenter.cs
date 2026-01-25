@@ -1,5 +1,6 @@
 using Rossoforge.Core.Events;
 using Rossoforge.Core.UI.Popups;
+using Rossoforge.Services;
 using Rossoforge.UI.Popups.Events;
 
 namespace Rossoforge.UI.Popups.PopupBase
@@ -15,9 +16,9 @@ namespace Rossoforge.UI.Popups.PopupBase
         protected V View { get; private set; }
         protected D Data { get; private set; }
 
-        protected PopupPresenter(IEventService eventService, V view)
+        protected PopupPresenter(V view)
         {
-            _eventService = eventService;
+            _eventService = ServiceLocator.Get<IEventService>();
 
             View = view;
             AllowCancel = true;

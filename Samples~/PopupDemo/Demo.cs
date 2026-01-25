@@ -1,5 +1,5 @@
 using Rossoforge.Core.Events;
-using Rossoforge.Core.UI;
+using Rossoforge.Core.UI.Popups;
 using Rossoforge.Pool.Data;
 using Rossoforge.Services;
 using Rossoforge.UI.Popups.Events;
@@ -15,7 +15,7 @@ namespace Rossoforge.UI.Popups.PopupDemo
         IEventListener<PopupDeactivatedEvent>
     {
         private IEventService _eventService;
-        private IUIService _uiService;
+        private IPopupService _popupService;
 
         [SerializeField]
         private PooledGameobjectData popupReference;
@@ -23,7 +23,7 @@ namespace Rossoforge.UI.Popups.PopupDemo
         private void Awake()
         {
             _eventService = ServiceLocator.Get<IEventService>();
-            _uiService = ServiceLocator.Get<IUIService>();
+            _popupService = ServiceLocator.Get<IPopupService>();
         }
 
         private void OnEnable()
@@ -42,24 +42,23 @@ namespace Rossoforge.UI.Popups.PopupDemo
             _eventService.UnregisterListener<PopupDeactivatedEvent>(this);
         }
 
-
         private async void Update()
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-                _uiService.OpenPopup<PopupTemplateView>(popupReference);
+                _popupService.OpenPopup<PopupTemplateView>(popupReference);
             }
 
             if (Input.GetKeyDown(KeyCode.B))
             {
                 Debug.LogWarning("Begin");
-                await _uiService.OpenPopupUntilClosed<PopupTemplateView>(popupReference);
+                await _popupService.OpenPopupUntilClosed<PopupTemplateView>(popupReference);
                 Debug.LogWarning("End");
             }
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                _uiService.CancelPopup();
+                _popupService.CancelPopup();
             }
         }
 

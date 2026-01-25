@@ -3,6 +3,7 @@ using Rossoforge.Core.Events;
 using Rossoforge.Core.Pool;
 using Rossoforge.Core.Services;
 using Rossoforge.Core.UI.Popups;
+using Rossoforge.Services;
 using Rossoforge.UI.Popups.Events;
 using Rossoforge.Utils.Logger;
 using System;
@@ -18,17 +19,15 @@ namespace Rossoforge.UI.Popups.Service
         private IEventService _eventService;
         private IPoolService _poolService;
 
-        private UIServiceData _serviceData;
+        private PopupServiceData _serviceData;
         private GameObject _root;
 
         private readonly List<IPopupView> _openPopups;
         private readonly Dictionary<IPopupView, TaskCompletionSource<bool>> _popupCompletionSources;
 
-        public PopupService(IEventService eventService, IPoolService poolService, UIServiceData uIServiceData)
+        public PopupService(PopupServiceData popupServiceData)
         {
-            _eventService = eventService;
-            _poolService = poolService;
-            _serviceData = uIServiceData;
+            _serviceData = popupServiceData;
 
             _openPopups = new List<IPopupView>();
             _popupCompletionSources = new Dictionary<IPopupView, TaskCompletionSource<bool>>();
@@ -36,6 +35,9 @@ namespace Rossoforge.UI.Popups.Service
 
         public void Initialize()
         {
+            _eventService = ServiceLocator.Get<IEventService>();
+            _poolService = ServiceLocator.Get<IPoolService>();
+
             _root = new GameObject("PopupsRoot");
             _root.AddComponent<DontDestroyRoot>();
 
