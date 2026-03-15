@@ -1,4 +1,4 @@
-using Rossoforge.Core.UI;
+using Rossoforge.Core.UI.Popups;
 
 namespace Rossoforge.UI.Popups.PopupQuestion
 {

@@ -20,19 +20,21 @@
 * [Rossoforge-Services](https://github.com/rossogames/Rossoforge-Services.git)
 * [Rossoforge-Pool](https://github.com/rossogames/Rossoforge-Pool.git)
 * [Rossoforge-UI-Controls](https://github.com/rossogames/Rossoforge-UI-Controls.git)
+* [Rossoforge-Utils](https://github.com/rossogames/Rossoforge-Utils.git)
 
 #
 ```csharp
-// Setup (requires Rossoforge-Services)
+// Setup
 ServiceLocator.SetLocator(new DefaultServiceLocator());
 
 var eventService = new EventService();
 var poolService = new PoolService();
-var uiService = new UIService(eventService, poolService);
+var popupService = new PopupService(_popupServiceData);
 
 ServiceLocator.Register<IEventService>(eventService);
 ServiceLocator.Register<IPoolService>(poolService);
-ServiceLocator.Register<IUIService>(uiService);
+ServiceLocator.Register<IPopupService>(popupService);
+
 ServiceLocator.Initialize();
 
 // 1. Using without addressables
