@@ -2,6 +2,7 @@ using Rossoforge.Core.Events;
 using Rossoforge.Core.UI.Popups;
 using Rossoforge.Services;
 using Rossoforge.UI.Popups.Events;
+using System;
 
 namespace Rossoforge.UI.Popups.PopupBase
 {
@@ -22,6 +23,9 @@ namespace Rossoforge.UI.Popups.PopupBase
 
             View = view;
             AllowCancel = true;
+        }
+        public virtual void OnDestroy()
+        {
         }
 
         public virtual void OnSetData(D popupData)
