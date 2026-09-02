@@ -59,16 +59,16 @@ namespace Rossoforge.UI.Popups.Service
                 popupView.Close();
         }
 
-        public T OpenPopup<T>(IPooledGameobjectData data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self) where T : MonoBehaviour, IPopupView
+        public T OpenPopup<T>(IPooledGameobjectData data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self, string poolCategory = IPoolService.DEFAULT_CATEGORY) where T : MonoBehaviour, IPopupView
         {
-            var popupView = _poolService.Get<T>(data, _root.transform, position, relativeTo);
+            var popupView = _poolService.Get<T>(data, _root.transform, position, relativeTo, poolCategory);
             TryOpenPopup<T>(popupView, popupData);
             return popupView;
         }
-        public async Awaitable<T> OpenPopupUntilClosed<T>(IPooledGameobjectData data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self) where T : MonoBehaviour, IPopupView
+        public async Awaitable<T> OpenPopupUntilClosed<T>(IPooledGameobjectData data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self, string poolCategory = IPoolService.DEFAULT_CATEGORY) where T : MonoBehaviour, IPopupView
         {
             var tcs = new TaskCompletionSource<bool>();
-            var popupView = _poolService.Get<T>(data, _root.transform, position, relativeTo);
+            var popupView = _poolService.Get<T>(data, _root.transform, position, relativeTo, poolCategory);
 
             _popupCompletionSources.Add(popupView, tcs);
             TryOpenPopup<T>(popupView, popupData);
@@ -78,16 +78,16 @@ namespace Rossoforge.UI.Popups.Service
 
         }
 #if HAS_ADDRESSABLES
-        public async Awaitable<T> OpenPopup<T>(IPooledObjectAsyncData data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self) where T : MonoBehaviour, IPopupView
+        public async Awaitable<T> OpenPopup<T>(IPooledObjectAsyncData data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self, string poolCategory = IPoolService.DEFAULT_CATEGORY) where T : MonoBehaviour, IPopupView
         {
-            var popupView = await _poolService.GetAsync<T>(data, _root.transform, position, relativeTo);
+            var popupView = await _poolService.GetAsync<T>(data, _root.transform, position, relativeTo, poolCategory);
             TryOpenPopup<T>(popupView, popupData);
             return popupView;
         }
-        public async Awaitable<T> OpenPopupUntilClosed<T>(IPooledObjectAsyncData data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self) where T : MonoBehaviour, IPopupView
+        public async Awaitable<T> OpenPopupUntilClosed<T>(IPooledObjectAsyncData data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self, string poolCategory = IPoolService.DEFAULT_CATEGORY) where T : MonoBehaviour, IPopupView
         {
             var tcs = new TaskCompletionSource<bool>();
-            var popupView = await _poolService.GetAsync<T>(data, _root.transform, position, relativeTo);
+            var popupView = await _poolService.GetAsync<T>(data, _root.transform, position, relativeTo, poolCategory);
 
             _popupCompletionSources.Add(popupView, tcs);
             TryOpenPopup<T>(popupView, popupData);
