@@ -1,7 +1,8 @@
 using Rossoforge.Core.Components;
-using Rossoforge.Core.Events;
 using Rossoforge.Core.Services;
 using Rossoforge.Core.UI.Popups;
+using Rossoforge.Events.Bus;
+using Rossoforge.Events.Service;
 using Rossoforge.Pool.DataConfig;
 using Rossoforge.Pool.Service;
 using Rossoforge.Services;
@@ -20,15 +21,15 @@ namespace Rossoforge.UI.Popups.Service
         private IEventService _eventService;
         private IPoolService _poolService;
 
-        private PopupServiceData _serviceData;
+        private PopupDataService _dataService;
         private GameObject _root;
 
         private readonly List<IPopupView> _openPopups;
         private readonly Dictionary<IPopupView, TaskCompletionSource<bool>> _popupCompletionSources;
 
-        public PopupService(PopupServiceData popupServiceData)
+        public PopupService(PopupDataService dataService)
         {
-            _serviceData = popupServiceData;
+            _dataService = dataService;
 
             _openPopups = new List<IPopupView>();
             _popupCompletionSources = new Dictionary<IPopupView, TaskCompletionSource<bool>>();
@@ -110,7 +111,7 @@ namespace Rossoforge.UI.Popups.Service
             popupView.Open();
 
             _openPopups.Add(popupView);
-            popupView.SetSortingOrder(_openPopups.Count + _serviceData.BaseSortingOrder);
+            popupView.SetSortingOrder(_openPopups.Count + _dataService.BaseSortingOrder);
         }
 
         public void OnEventInvoked(PopupDeactivatedEvent eventArg)
