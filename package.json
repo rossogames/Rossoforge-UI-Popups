@@ -1,7 +1,7 @@
 {
-  "name": "com.rossogames.rossoforge-ui-popups",
+  "name": "com.rossogames.rossoforge-popups",
   "version": "1.5.0",
-  "displayName": "Rossoforge-UI-Popups",
+  "displayName": "Rossoforge-Popups",
   "unity": "2025.0",
   "author": {
     "name": "Agustin Rosso",

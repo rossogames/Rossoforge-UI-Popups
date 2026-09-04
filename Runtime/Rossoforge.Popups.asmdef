@@ -1,6 +1,6 @@
 {
-    "name": "Rossoforge.UI.Popups",
-    "rootNamespace": "Rossoforge.UI.Popups",
+    "name": "Rossoforge.Popups",
+    "rootNamespace": "Rossoforge.Popups",
     "references": [
         "Unity.TextMeshPro",
         "Rossoforge.Core",
