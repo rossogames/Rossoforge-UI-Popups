@@ -1,11 +1,11 @@
-using Rossoforge.Core.Components;
-using Rossoforge.Core.Services;
+using Rossoforge.Common.Components;
 using Rossoforge.Core.UI.Popups;
 using Rossoforge.Events.Bus;
 using Rossoforge.Events.Service;
 using Rossoforge.Pool.DataConfig;
 using Rossoforge.Pool.Service;
-using Rossoforge.Services;
+using Rossoforge.Services.Locator;
+using Rossoforge.Services.Service;
 using Rossoforge.UI.Popups.Events;
 using Rossoforge.Utils.Logger;
 using System;
@@ -41,7 +41,7 @@ namespace Rossoforge.UI.Popups.Service
             _poolService = ServiceLocator.Get<IPoolService>();
 
             _root = new GameObject("PopupsRoot");
-            _root.AddComponent<DontDestroyRoot>();
+            _root.AddComponent<PersistentObject>();
 
             _eventService.RegisterListener<PopupDeactivatedEvent>(this);
         }

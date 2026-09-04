@@ -1,6 +1,6 @@
 using Rossoforge.Core.UI.Popups;
 using Rossoforge.Events.Service;
-using Rossoforge.Services;
+using Rossoforge.Services.Locator;
 using Rossoforge.UI.Popups.Events;
 
 namespace Rossoforge.UI.Popups.PopupBase
