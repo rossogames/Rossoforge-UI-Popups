@@ -1,8 +1,7 @@
-using Rossoforge.Core.UI.Popups;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Rossoforge.UI.Popups.PopupBase
+namespace Rossoforge.Popups.UI
 {
     [RequireComponent(typeof(Animator))]
     public class PopupController : MonoBehaviour

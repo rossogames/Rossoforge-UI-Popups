@@ -1,9 +1,8 @@
-using Rossoforge.Core.UI.Popups;
 using Rossoforge.Events.Service;
+using Rossoforge.Popups.Events;
 using Rossoforge.Services.Locator;
-using Rossoforge.UI.Popups.Events;
 
-namespace Rossoforge.UI.Popups.PopupBase
+namespace Rossoforge.Popups.UI
 {
     public abstract class PopupPresenter<V, P, D> : IPopupPresenter
         where V : PopupView<V, P, D>

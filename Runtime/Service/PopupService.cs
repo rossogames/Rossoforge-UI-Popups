@@ -1,19 +1,19 @@
 using Rossoforge.Common.Components;
-using Rossoforge.Core.UI.Popups;
 using Rossoforge.Events.Bus;
 using Rossoforge.Events.Service;
 using Rossoforge.Pool.DataConfig;
 using Rossoforge.Pool.Service;
+using Rossoforge.Popups.Events;
+using Rossoforge.Popups.UI;
 using Rossoforge.Services.Locator;
 using Rossoforge.Services.Service;
-using Rossoforge.UI.Popups.Events;
 using Rossoforge.Utils.Logger;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Rossoforge.UI.Popups.Service
+namespace Rossoforge.Popups.Service
 {
     public class PopupService : IPopupService, IInitializable, IDisposable,
         IEventListener<PopupDeactivatedEvent>

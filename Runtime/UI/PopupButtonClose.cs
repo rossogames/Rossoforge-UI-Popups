@@ -1,6 +1,6 @@
 using Rossoforge.Controls.Buttons;
 
-namespace Rossoforge.UI.Popups.PopupBase
+namespace Rossoforge.Popups.UI
 {
     public class PopupButtonClose : ButtonEventsHandler<PopupButtonClose>
     {

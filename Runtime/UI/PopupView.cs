@@ -1,8 +1,7 @@
 using Rossoforge.Controls.Buttons;
-using Rossoforge.Core.UI.Popups;
 using UnityEngine;
 
-namespace Rossoforge.UI.Popups.PopupBase
+namespace Rossoforge.Popups.UI
 {
     [RequireComponent(typeof(PopupController))]
     [RequireComponent(typeof(Canvas))]

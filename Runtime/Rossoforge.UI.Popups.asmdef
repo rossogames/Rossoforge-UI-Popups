@@ -6,7 +6,7 @@
         "Rossoforge.Core",
         "Rossoforge.Services",
         "Rossoforge.Utils",
-        "Rossoforge.UI.Controls"
+        "Rossoforge.Controls"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

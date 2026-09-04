@@ -1,7 +1,7 @@
-using Rossoforge.Core.UI.Popups;
 using Rossoforge.Events.Bus;
+using Rossoforge.Popups.UI;
 
-namespace Rossoforge.UI.Popups.Events
+namespace Rossoforge.Popups.Events
 {
     public readonly struct PopupClosingEvent : IEvent
     {
