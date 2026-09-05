@@ -1,0 +1,20 @@
+{
+    "name": "Rossoforge.Popups",
+    "rootNamespace": "Rossoforge.Popups",
+    "references": [
+        "Unity.TextMeshPro",
+        "Rossoforge.Core",
+        "Rossoforge.Services",
+        "Rossoforge.Utils",
+        "Rossoforge.Controls"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

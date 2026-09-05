@@ -1,17 +1,19 @@
-using Rossoforge.Core.Components;
-using Rossoforge.Core.Events;
-using Rossoforge.Core.Pool;
-using Rossoforge.Core.Services;
-using Rossoforge.Core.UI.Popups;
-using Rossoforge.Services;
-using Rossoforge.UI.Popups.Events;
+using Rossoforge.Common.Components;
+using Rossoforge.Events.Bus;
+using Rossoforge.Events.Service;
+using Rossoforge.Pool.DataConfig;
+using Rossoforge.Pool.Service;
+using Rossoforge.Popups.Events;
+using Rossoforge.Popups.UI;
+using Rossoforge.Services.Locator;
+using Rossoforge.Services.Service;
 using Rossoforge.Utils.Logger;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Rossoforge.UI.Popups.Service
+namespace Rossoforge.Popups.Service
 {
     public class PopupService : IPopupService, IInitializable, IDisposable,
         IEventListener<PopupDeactivatedEvent>
@@ -19,15 +21,15 @@ namespace Rossoforge.UI.Popups.Service
         private IEventService _eventService;
         private IPoolService _poolService;
 
-        private PopupServiceData _serviceData;
+        private PopupDataService _dataService;
         private GameObject _root;
 
         private readonly List<IPopupView> _openPopups;
         private readonly Dictionary<IPopupView, TaskCompletionSource<bool>> _popupCompletionSources;
 
-        public PopupService(PopupServiceData popupServiceData)
+        public PopupService(PopupDataService dataService)
         {
-            _serviceData = popupServiceData;
+            _dataService = dataService;
 
             _openPopups = new List<IPopupView>();
             _popupCompletionSources = new Dictionary<IPopupView, TaskCompletionSource<bool>>();
@@ -39,7 +41,7 @@ namespace Rossoforge.UI.Popups.Service
             _poolService = ServiceLocator.Get<IPoolService>();
 
             _root = new GameObject("PopupsRoot");
-            _root.AddComponent<DontDestroyRoot>();
+            _root.AddComponent<PersistentObject>();
 
             _eventService.RegisterListener<PopupDeactivatedEvent>(this);
         }
@@ -59,16 +61,16 @@ namespace Rossoforge.UI.Popups.Service
                 popupView.Close();
         }
 
-        public T OpenPopup<T>(IPooledGameobjectData data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self) where T : MonoBehaviour, IPopupView
+        public T OpenPopup<T>(IPooledGameobjectDataConfig data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self, string poolCategory = IPoolService.DEFAULT_CATEGORY) where T : MonoBehaviour, IPopupView
         {
-            var popupView = _poolService.Get<T>(data, _root.transform, position, relativeTo);
+            var popupView = _poolService.Get<T>(data, _root.transform, position, relativeTo, poolCategory);
             TryOpenPopup<T>(popupView, popupData);
             return popupView;
         }
-        public async Awaitable<T> OpenPopupUntilClosed<T>(IPooledGameobjectData data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self) where T : MonoBehaviour, IPopupView
+        public async Awaitable<T> OpenPopupUntilClosed<T>(IPooledGameobjectDataConfig data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self, string poolCategory = IPoolService.DEFAULT_CATEGORY) where T : MonoBehaviour, IPopupView
         {
             var tcs = new TaskCompletionSource<bool>();
-            var popupView = _poolService.Get<T>(data, _root.transform, position, relativeTo);
+            var popupView = _poolService.Get<T>(data, _root.transform, position, relativeTo, poolCategory);
 
             _popupCompletionSources.Add(popupView, tcs);
             TryOpenPopup<T>(popupView, popupData);
@@ -78,16 +80,16 @@ namespace Rossoforge.UI.Popups.Service
 
         }
 #if HAS_ADDRESSABLES
-        public async Awaitable<T> OpenPopup<T>(IPooledObjectAsyncData data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self) where T : MonoBehaviour, IPopupView
+        public async Awaitable<T> OpenPopup<T>(IPooledObjectAsyncDataConfig data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self, string poolCategory = IPoolService.DEFAULT_CATEGORY) where T : MonoBehaviour, IPopupView
         {
-            var popupView = await _poolService.GetAsync<T>(data, _root.transform, position, relativeTo);
+            var popupView = await _poolService.GetAsync<T>(data, _root.transform, position, relativeTo, poolCategory);
             TryOpenPopup<T>(popupView, popupData);
             return popupView;
         }
-        public async Awaitable<T> OpenPopupUntilClosed<T>(IPooledObjectAsyncData data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self) where T : MonoBehaviour, IPopupView
+        public async Awaitable<T> OpenPopupUntilClosed<T>(IPooledObjectAsyncDataConfig data, IPopupData popupData = null, Vector3 position = new(), Space relativeTo = Space.Self, string poolCategory = IPoolService.DEFAULT_CATEGORY) where T : MonoBehaviour, IPopupView
         {
             var tcs = new TaskCompletionSource<bool>();
-            var popupView = await _poolService.GetAsync<T>(data, _root.transform, position, relativeTo);
+            var popupView = await _poolService.GetAsync<T>(data, _root.transform, position, relativeTo, poolCategory);
 
             _popupCompletionSources.Add(popupView, tcs);
             TryOpenPopup<T>(popupView, popupData);
@@ -109,7 +111,7 @@ namespace Rossoforge.UI.Popups.Service
             popupView.Open();
 
             _openPopups.Add(popupView);
-            popupView.SetSortingOrder(_openPopups.Count + _serviceData.BaseSortingOrder);
+            popupView.SetSortingOrder(_openPopups.Count + _dataService.BaseSortingOrder);
         }
 
         public void OnEventInvoked(PopupDeactivatedEvent eventArg)
