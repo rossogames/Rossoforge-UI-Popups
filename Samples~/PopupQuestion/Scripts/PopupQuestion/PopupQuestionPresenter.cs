@@ -1,6 +1,6 @@
-using Rossoforge.UI.Popups.PopupBase;
+using Rossoforge.Popups.UI;
 
-namespace Rossoforge.UI.Popups.PopupQuestion
+namespace Rossoforge.Popups.Samples.PopupQuestion
 {
     public class PopupQuestionPresenter : PopupPresenter<PopupQuestionView, PopupQuestionPresenter, PopupQuestionData>
     {

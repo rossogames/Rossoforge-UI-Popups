@@ -1,6 +1,6 @@
-using Rossoforge.UI.Popups.PopupBase;
+using Rossoforge.Popups.UI;
 
-namespace Rossoforge.UI.Popups.PopupTemplate
+namespace Rossoforge.Popups.Samples.PopupTemplate
 {
     public class PopupTemplateView : PopupView<PopupTemplateView, PopupTemplatePresenter, PopupTemplateData>
     {

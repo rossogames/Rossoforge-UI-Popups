@@ -1,12 +1,13 @@
-using Rossoforge.Core.Events;
-using Rossoforge.Core.UI.Popups;
-using Rossoforge.Pool.Data;
-using Rossoforge.Services;
-using Rossoforge.UI.Popups.Events;
-using Rossoforge.UI.Popups.PopupTemplate;
+using Rossoforge.Events.Bus;
+using Rossoforge.Events.Service;
+using Rossoforge.Pool.DataConfig;
+using Rossoforge.Popups.Events;
+using Rossoforge.Popups.Samples.PopupTemplate;
+using Rossoforge.Popups.Service;
+using Rossoforge.Services.Locator;
 using UnityEngine;
 
-namespace Rossoforge.UI.Popups.PopupDemo
+namespace Rossoforge.Popups.Samples.PopupDemo
 {
     public class Demo : MonoBehaviour,
         IEventListener<PopupOpeningEvent>,
@@ -18,7 +19,7 @@ namespace Rossoforge.UI.Popups.PopupDemo
         private IPopupService _popupService;
 
         [SerializeField]
-        private PooledGameobjectData popupReference;
+        private PooledGameobjectDataConfig popupReference;
 
         private void Awake()
         {

@@ -1,18 +1,15 @@
-using Rossoforge.Core.Events;
-using Rossoforge.Core.Pool;
-using Rossoforge.Core.UI.Popups;
 using Rossoforge.Events.Service;
 using Rossoforge.Pool.Service;
-using Rossoforge.Services;
-using Rossoforge.UI.Popups.Service;
+using Rossoforge.Popups.Service;
+using Rossoforge.Services.Locator;
 using UnityEngine;
 
-namespace Rossoforge.UI.Popups.PopupDemo
+namespace Rossoforge.Popups.Samples.PopupDemo
 {
     public class Boot : MonoBehaviour
     {
         [SerializeField]
-        private PopupServiceData _popupServiceData;
+        private PopupDataService _popupServiceData;
 
         private void Awake()
         {
@@ -29,6 +26,5 @@ namespace Rossoforge.UI.Popups.PopupDemo
 
             ServiceLocator.Initialize();
         }
-
     }
 }

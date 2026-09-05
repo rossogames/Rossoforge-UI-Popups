@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67768431122e8314cbf169b2db1089cb, type: 3}
-  m_Name: PopupServiceData
+  m_Script: {fileID: 11500000, guid: 0df21c372bcb9534390d64dec32b6fe0, type: 3}
+  m_Name: PopupDataService
   m_EditorClassIdentifier: Rossoforge.UI.Popups::Rossoforge.UI.Popups.Service.PopupServiceData
   <BaseSortingOrder>k__BackingField: 30000

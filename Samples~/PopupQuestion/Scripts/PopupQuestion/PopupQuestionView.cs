@@ -1,9 +1,9 @@
-using Rossoforge.UI.Controls.Buttons;
-using Rossoforge.UI.Popups.PopupBase;
+using Rossoforge.Controls.Buttons;
+using Rossoforge.Popups.UI;
 using TMPro;
 using UnityEngine;
 
-namespace Rossoforge.UI.Popups.PopupQuestion
+namespace Rossoforge.Popups.Samples.PopupQuestion
 {
     public class PopupQuestionView : PopupView<PopupQuestionView, PopupQuestionPresenter, PopupQuestionData>,
         IButtonClickListener<PopupQuestionButtonOk>,
