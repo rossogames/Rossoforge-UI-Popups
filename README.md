@@ -29,7 +29,7 @@ ServiceLocator.SetLocator(new DefaultServiceLocator());
 
 var eventService = new EventService();
 var poolService = new PoolService();
-var popupService = new PopupService(_popupServiceData);
+var popupService = new PopupService(_popupDataService);
 
 ServiceLocator.Register<IEventService>(eventService);
 ServiceLocator.Register<IPoolService>(poolService);
